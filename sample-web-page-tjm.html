@@ -19,6 +19,43 @@
   <h3>Hw 11 answers</h3>
   <!-- This is an HTML comment -->
 
+  <h3>Hw 11 answers</h3>
+  <!-- This is an HTML comment -->
+  <h3>Hw 11 answers</h3>
+  <!-- This is an HTML comment -->
+  <h3>Hw 11 answers</h3>
+  <!-- This is an HTML comment -->
+  <h3>Hw 11 answers</h3>
+  <!-- This is an HTML comment -->
+  <h3>Hw 11 answers</h3>
+  <!-- This is an HTML comment -->
+  <h3>Hw 11 answers</h3>
+  <!-- This is an HTML comment -->
+
+  <h3>Hw 11 answers</h3>
+  <!-- This is an HTML comment -->
+  <h3>Hw 11 answers</h3>
+  <!-- This is an HTML comment -->
+  <h3>Hw 11 answers</h3>
+  <!-- This is an HTML comment -->
+  <h3>Hw 11 answers</h3>
+  <!-- This is an HTML comment -->
+  <h3>Hw 11 answers</h3>
+  <!-- This is an HTML comment -->
+  <h3>Hw 11 answers</h3>
+  <!-- This is an HTML comment -->
+
+  <h3>Hw 11 answers</h3>
+  <!-- This is an HTML comment -->
+  <h3>Hw 11 answers</h3>
+  <!-- This is an HTML comment -->
+  <h3>Hw 11 answers</h3>
+  <!-- This is an HTML comment -->
+  <h3>Hw 11 answers</h3>
+  <!-- This is an HTML comment -->
+  <h3>Hw 11 answers</h3>
+  <!-- This is an HTML comment -->
+  
 
   <ul>
     <!-- start unordered list -->
@@ -73,23 +110,25 @@
 <script src="webgazer.js"></script>
         <script>
 window.onload = function() {
-    webgazer.setRegression('ridge') /* currently must set regression and tracker */
+    webgazer.setRegression('threadedRidge') /* currently must set regression and tracker */
         .setTracker('clmtrackr')
         .setGazeListener(function(data, clock) {
-         //   console.log(data); /* data is an object containing an x and y key which are the x and y prediction coordinates (no bounds limiting) */
-         //   console.log(clock); /* elapsed time in milliseconds since webgazer.begin() was called */
+            console.log(data); /* data is an object containing an x and y key which are the x and y prediction coordinates (no bounds limiting) */
+            console.log(clock); /* elapsed time in milliseconds since webgazer.begin() was called */
+            var a = window.pageYOffset;
+            console.log(a);
         })
         .begin()
         .showPredictionPoints(true); /* shows a square every 100 milliseconds where current prediction is */
- //       .recordPredictionPoints(true); /* shows a square every 100 milliseconds where current prediction is */
+
 
     var width = 320;
     var height = 240;
     var topDist = '0px';
     var leftDist = '0px';
     
-    var setup = function() {
-/*        var video = document.getElementById('webgazerVideoFeed');
+var setup = function() {
+        var video = document.getElementById('webgazerVideoFeed');
         video.style.display = 'block';
         video.style.position = 'absolute';
         video.style.top = topDist;
@@ -111,7 +150,7 @@ window.onload = function() {
         overlay.style.margin = '0px';
 
         document.body.appendChild(overlay);
-*/
+
         var cl = webgazer.getTracker().clm;
 
         function drawLoop() {
