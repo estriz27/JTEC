@@ -1,0 +1,335 @@
+<html>
+<head>
+  <title>Hw 11, problem 1 lab page</title>
+</head>
+
+<body>
+
+
+<!-- The overlay -->
+<div id="myNav" class="overlay">
+
+  <!-- Button to close the overlay navigation -->
+  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+
+  <!-- Overlay content -->
+  <div class="overlay-content1">
+    <img src="reddot.png" height="100">
+  </div>
+  <div class="overlay-content2">
+    <img src="reddot.png" height="100">
+  </div>
+  <div class="overlay-content3">
+    <img src="reddot.png" height="100">
+  </div>
+  <div class="overlay-content4">
+    <img src="reddot.png" height="100">
+  </div>
+
+</div>
+
+<!-- Use any element to open/show the overlay navigation menu -->
+<span onclick="openNav()">open</span>
+
+  <script src="webgazer.js"></script>
+  <script>
+
+function openNav() {
+    document.getElementById("myNav").style.width = "100%";
+}
+
+function closeNav() {
+    document.getElementById("myNav").style.width = "0%";
+}
+
+
+    window.onload = function() {
+      webgazer.setRegression('ridge') /* currently must set regression and tracker */
+      .setTracker('clmtrackr')
+      .setGazeListener(function(data, clock) {
+        //   console.log(data); /* data is an object containing an x and y key which are the x and y prediction coordinates (no bounds limiting) */
+         //   console.log(clock); /* elapsed time in milliseconds since webgazer.begin() was called */
+      })
+      .begin()
+      .showPredictionPoints(true); /* shows a square every 100 milliseconds where current prediction is */
+
+      var width = 320;
+      var height = 240;
+      var topDist = '0px';
+      var leftDist = '0px';
+    
+      var setup = function() {
+        /*var video = document.getElementById('webgazerVideoFeed');
+        video.style.display = 'block';
+        video.style.position = 'absolute';
+        video.style.top = topDist;
+        video.style.left = leftDist;
+        video.width = width;
+        video.height = height;
+        video.style.margin = '0px';
+
+        webgazer.params.imgWidth = width;
+        webgazer.params.imgHeight = height;*/
+
+        var overlay = document.createElement('canvas');
+        overlay.id = 'overlay';
+        overlay.style.position = 'absolute';
+        overlay.width = width;
+        overlay.height = height;
+        overlay.style.top = topDist;
+        overlay.style.left = leftDist;
+        overlay.style.margin = '0px';
+
+        document.body.appendChild(overlay);
+
+        var cl = webgazer.getTracker().clm;
+
+        function drawLoop() {
+          requestAnimFrame(drawLoop);
+          overlay.getContext('2d').clearRect(0,0,width,height);
+          if (cl.getCurrentPosition()) {
+            cl.draw(overlay);
+          }
+        }
+        drawLoop();
+      };
+
+      function checkIfReady() {
+        if (webgazer.isReady()) {
+          setup();
+        } else {
+          setTimeout(checkIfReady, 100);
+        }
+      }
+      setTimeout(checkIfReady,100);
+    };
+
+    window.onbeforeunload = function() {
+      //webgazer.end(); //Uncomment if you want to save the data even if you reload the page.
+      window.localStorage.clear(); //Comment out if you want to save data across different sessions 
+    }
+  </script>
+  
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=277249642292728";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+
+  <h3>Hw 11 answers</h3>
+  <!-- This is an HTML comment -->
+
+  <h3>Hw 11 answers</h3>
+  <!-- This is an HTML comment -->
+  <h3>Hw 11 answers</h3>
+  <!-- This is an HTML comment -->
+  <h3>Hw 11 answers</h3>
+  <!-- This is an HTML comment -->
+  <h3>Hw 11 answers</h3>
+  <!-- This is an HTML comment -->
+  <h3>Hw 11 answers</h3>
+  <!-- This is an HTML comment -->
+  <h3>Hw 11 answers</h3>
+  <!-- This is an HTML comment -->
+
+  <h3>Hw 11 answers</h3>
+  <!-- This is an HTML comment -->
+  <h3>Hw 11 answers</h3>
+  <!-- This is an HTML comment -->
+  <h3>Hw 11 answers</h3>
+  <!-- This is an HTML comment -->
+  <h3>Hw 11 answers</h3>
+  <!-- This is an HTML comment -->
+  <h3>Hw 11 answers</h3>
+  <!-- This is an HTML comment -->
+  <h3>Hw 11 answers</h3>
+  <!-- This is an HTML comment -->
+
+  <h3>Hw 11 answers</h3>
+  <!-- This is an HTML comment -->
+  <h3>Hw 11 answers</h3>
+  <!-- This is an HTML comment -->
+  <h3>Hw 11 answers</h3>
+  <!-- This is an HTML comment -->
+  <h3>Hw 11 answers</h3>
+  <!-- This is an HTML comment -->
+  <h3>Hw 11 answers</h3>
+  <!-- This is an HTML comment -->
+  
+
+  <ul>
+    <!-- start unordered list -->
+
+
+    <li><b>Name:</b> John Simmons</li>
+
+
+    <li style="list-style: none"><br>
+    <br>
+    <!-- these are line breaks -->
+    </li>
+
+
+    <li><b>Favorite:</b> Photograph of myself is this one: <img src=
+    "alienBig.png" height="100"><br>
+    <br></li>
+
+
+    <li><b>Favorite:</b> My favorite canned meat product is spam.<br>
+    My favorite <a href=
+		"http://www.lewisburgpa.com/">
+    town</a> is Lewisburg!</li>
+
+
+    <li style="list-style: none"><br>
+    <br>
+    </li>
+
+
+    <li><b>Least favorite:</b> My least favorite HTML tag is
+    <blink>blink</blink><br>
+    <marquee direction="left" width="300px">The marquee tag is a close
+    second...</marquee></li>
+
+    <li><i>I like:</i> I like to play hockey and read books.</li>
+    
+    <li><b>Website critique:</b> The web site I chose to critique is linked  
+    <a href = "https://www.huntington.com/"> here </a>
+
+    <li style="list-style: none"><br>
+    <br>
+    </li>
+  </ul>
+  <!-- end unordered list -->
+  Views expressed here are those of the author; Bucknell does not endorse spam
+  or marquee text.
+<li>
+<div class="fb-like" data-href="https://developers.facebook.com/docs/plugins/" data-layout="standard" data-action="like" data-show-faces="true" data-share="true"></div>
+</li>
+
+</body>
+
+
+<style>
+
+/* The Overlay (background) */
+.overlay {
+    /* Height & width depends on how you want to reveal the overlay (see JS below) */    
+    height: 100%;
+    width: 0;
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    background-color: rgb(0,0,0); /* Black fallback color */
+    background-color: rgba(0,0,0, 0.9); /* Black w/opacity */
+    overflow-x: hidden; /* Disable horizontal scroll */
+    transition: 0s; /* 0.5 second transition effect to slide in or slide down the overlay (height or width, depending on reveal) */
+}
+
+/* Position the content inside the overlay */
+.overlay-content1 {
+    position: absolute;
+    top: 15%; /* 25% from the top */
+    left: 15%;
+   /* width: 100%; /* 100% width */
+    /*text-align: ceter; /* Centered text/links */
+/*
+    position: absolute;
+    top: 650px;
+    left: 100px;
+*/    
+   /* margin-top: 30px; /* 30px top margin to avoid conflict with the close button on smaller screens */
+}
+/* Position the content inside the overlay */
+.overlay-content2 {
+    position: absolute;
+    top: 15%; /* 25% from the top */
+    left: 80%;
+/*    width: 100%; /* 100% width */
+    /*text-align: ceter; /* Centered text/links */
+/*
+    position: absolute;
+    top: 650px;
+    left: 100px;
+*/    
+   /* margin-top: 30px; /* 30px top margin to avoid conflict with the close button on smaller screens */
+}
+
+/* Position the content inside the overlay */
+.overlay-content3 {
+    position: absolute;
+    top: 80%; /* 25% from the top */
+    left: 15%;
+/*    width: 100%; /* 100% width */
+    /*text-align: ceter; /* Centered text/links */
+/*
+    position: absolute;
+    top: 650px;
+    left: 100px;
+*/    
+   /* margin-top: 30px; /* 30px top margin to avoid conflict with the close button on smaller screens */
+}
+
+/* Position the content inside the overlay */
+.overlay-content4 {
+    position: absolute;
+    top: 80%; /* 25% from the top */
+    left: 80%;
+ /*   width: 100%; /* 100% width */
+    /*text-align: ceter; /* Centered text/links */
+/*
+    position: absolute;
+    top: 650px;
+    left: 100px;
+*/    
+   /* margin-top: 30px; /* 30px top margin to avoid conflict with the close button on smaller screens */
+}
+
+
+
+/* The navigation links inside the overlay */
+
+.overlay a {
+    padding: 8px;
+    text-decoration: none;
+    font-size: 36px;
+    color: #818181;
+    display: block; /* Display block instead of inline */
+    transition: 0.3s; /* Transition effects on hover (color) */
+}
+
+/* When you mouse over the navigation links, change their color */
+/*
+.overlay a:hover, .overlay a:focus {
+    color: #f1f1f1;
+}
+*/
+
+/* Position the close button (top right corner) */
+.overlay .closebtn {
+    position: absolute;
+    top: 20px;
+    right: 45px;
+    font-size: 60px;
+}
+
+/* When the height of the screen is less than 450 pixels, change the font-size of the links and position the close button again, so they don't overlap */
+/*
+@media screen and (max-height: 450px) {
+    .overlay a {font-size: 20px}
+    .overlay .closebtn {
+        font-size: 40px;
+        top: 15px;
+        right: 35px;
+    }
+}
+*/
+</style>
+
+</html>
