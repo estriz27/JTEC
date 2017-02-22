@@ -2,4 +2,4 @@
 ## JTEC
 
 ## Client: Dr. Even Peck
-## Teammates: JTEC
+## Teammates: John Simmon, Terence McHugh, Elias Strizower, Chris Shadek
