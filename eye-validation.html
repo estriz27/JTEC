@@ -101,23 +101,37 @@ function startTimer(){
         }
         setTimeout(function(){
             validation = false;
-            var x_sum = x_points.reduce(function(a, b) { return a + b; });
-            var x_avg = x_sum / x_points.length;
-            var y_sum = y_points.reduce(function(a, b) { return a + b; });
-            var y_avg = y_sum / y_points.length;
+            var dist = distance(x_val_points,y_val_points,trueX[overlay],trueY[overlay])
+            /*var x_sum = x_val_points.reduce(function(a, b) { return a + b; });
+            var x_avg = x_sum / x_val_points.length;
+            var y_sum = y_val_points.reduce(function(a, b) { return a + b; });
+            var y_avg = y_sum / y_val_points.length;
             console.log(x_avg);
             console.log(y_avg);
-            x_points = []; 
-            y_points = [];
+            */
+            var sum_dist = dist.reduce(function(a, b) { return a + b; });
+            var avg_dist = sum_dist / dist.length;
+            x_val_points = []; 
+            y_val_points = [];
         },3000);
     }
+}
+function distance(x,y,trueX,trueY){
+    var dist = [];
+    for(i = 0; i<x_val_points.length;i++){
+        dist.push(((x[i]-trueX)^2+(y[i]-trueY)^2)^.5);
+    }
+    return dist;
 }
 
 //webgazer
 var VALIDATION_RATE = 50000;
+var x_val_points = [];
+var y_val_points = [];
 var x_points = [];
 var y_points = [];
 var validation = false;
+
 
     window.onload = function() {
       webgazer.setRegression('ridge') /* currently must set regression and tracker */
@@ -129,8 +143,8 @@ var validation = false;
              openNav();
          }
          if(validation && data != null ){
-             x_points.push(data.x);
-	     y_points.push(data.y);
+             x_val_points.push(data.x);
+	     y_val_points.push(data.y);
          }	   
       })
       .begin()
