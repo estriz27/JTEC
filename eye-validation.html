@@ -1,197 +1,217 @@
 <html>
-<head>
-  <title>Hw 11, problem 1 lab page</title>
-</head>
+    <head>
+        <title>Hw 11, problem 1 lab page</title>
+    </head>
 
-<body>
+    <body>
 
 
-<!-- The overlay -->
-<div id="topLeft" class="overlay">
-  <!-- Button to close the overlay navigation -->
-  <a href="javascript:void(0)" class="closebtn" onclick="hardCloseNav()">&times;</a>
-  <!-- Overlay content -->
-  <div class="overlay-content1">
-    <img src="reddot.png" height="100" onclick="startTimer()">
-  </div>
-</div>
+        <!-- The overlay -->
+        <div id="topLeft" class="overlay">
+            <!-- Button to close the overlay navigation -->
+            <a href="javascript:void(0)" class="closebtn" onclick="hardCloseNav()">&times;</a>
+            <!-- Overlay content -->
+            <div class="overlay-content1">
+                <img src="reddot.png" height="100" onclick="startTimer()">
+            </div>
+            <div class="overlay-text1">
+                We need to validate your eye tracking data. 
+                Please click on the red dot in the top left of the screen 
+                and look at it until it dissapears.
+            </div>
+        </div>
 
-<div id="topRight" class="overlay">
-  <!-- Button to close the overlay navigation -->
-  <a href="javascript:void(0)" class="closebtn" onclick="hardCloseNav()">&times;</a>
-  <!-- Overlay content -->
-  <div class="overlay-content2">
-    <img src="reddot.png" height="100" onclick="startTimer()">
-  </div>
-</div>
+        <div id="topRight" class="overlay">
+            <!-- Button to close the overlay navigation -->
+            <a href="javascript:void(0)" class="closebtn" onclick="hardCloseNav()">&times;</a>
+            <!-- Overlay content -->
+            <div class="overlay-content2">
+                <img src="reddot.png" height="100" onclick="startTimer()">
+            </div>
+            <div class="overlay-text1">
+                Please repeat the process
+                with the dot on the top right.
+            </div>
+        </div>
 
-<div id="bottomLeft" class="overlay">
-  <!-- Button to close the overlay navigation -->
-  <a href="javascript:void(0)" class="closebtn" onclick="hardCloseNav()">&times;</a>
-  <!-- Overlay content -->
-  <div class="overlay-content3">
-    <img src="reddot.png" height="100" onclick="startTimer()">
-  </div>
-</div>
+        <div id="bottomLeft" class="overlay">
+            <!-- Button to close the overlay navigation -->
+            <a href="javascript:void(0)" class="closebtn" onclick="hardCloseNav()">&times;</a>
+            <!-- Overlay content -->
+            <div class="overlay-content3">
+                <img src="reddot.png" height="100" onclick="startTimer()">
+            </div>
+            <div class="overlay-text1">
+                Please repeat the process
+                with the dot on the bottom left.
+            </div>
+        </div>
 
-<div id="bottomRight" class="overlay">
-  <!-- Button to close the overlay navigation -->
-  <a href="javascript:void(0)" class="closebtn" onclick="hardCloseNav()">&times;</a>
-  <!-- Overlay content -->
-  <div class="overlay-content4">
-    <img src="reddot.png" height="100" onclick="startTimer()">
-  </div>
-</div>
+        <div id="bottomRight" class="overlay">
+            <!-- Button to close the overlay navigation -->
+            <a href="javascript:void(0)" class="closebtn" onclick="hardCloseNav()">&times;</a>
+            <!-- Overlay content -->
+            <div class="overlay-content4">
+                <img src="reddot.png" height="100" onclick="startTimer()">
+            </div>
+            <div class="overlay-text1">
+                Please repeat the process
+                with the dot on the botton right.
+            </div>
+        </div>
 
-<!-- Use any element to open/show the overlay navigation menu 
-<span onclick="openNav()">open1</span>    -->
+        <!-- Use any element to open/show the overlay navigation menu 
+        <span onclick="openNav()">open1</span>    -->
 
-  <script src="webgazer.js"></script>
-  <script>
-var overlay = 0;
-var inuse = 0;
-function openNav() {
-    overlay = overlay % 4;
-    switch(overlay){
-        case 0:
-            document.getElementById("topLeft").style.width = "100%";
-            break;
-        case 1:
-            document.getElementById("topRight").style.width = "100%";
-            break;
-        case 2:
-            document.getElementById("bottomLeft").style.width = "100%";
-            break;
-        case 3:
-            document.getElementById("bottomRight").style.width = "100%";
-            break;
-    }
-}
-function closeNav() {
-    switch(overlay){
-        case 0:
-            document.getElementById("topLeft").style.width = "0%";
-            break;
-        case 1:
-            document.getElementById("topRight").style.width = "0%";
-            break;
-        case 2:
-            document.getElementById("bottomLeft").style.width = "0%";
-            break;
-        case 3:
-            document.getElementById("bottomRight").style.width = "0%";
-            break;
-    }
-    overlay += 1;
-}
-function hardCloseNav() {
-    document.getElementById("topLeft").style.width = "0%";
-    document.getElementById("topRight").style.width = "0%";
-    document.getElementById("bottomLeft").style.width = "0%";
-    document.getElementById("bottomRight").style.width = "0%";
-    overlay = 0;
-}
-function startTimer(){
-    if(validation==false){
-        validation = true;
-        //call to collect predictions
-        setTimeout(closeNav,3000);
-        if(overlay != 3){
-            setTimeout(openNav,3000);
-        }
-        setTimeout(function(){
-            validation = false;
-            var x_sum = x_points.reduce(function(a, b) { return a + b; });
-            var x_avg = x_sum / x_points.length;
-            var y_sum = y_points.reduce(function(a, b) { return a + b; });
-            var y_avg = y_sum / y_points.length;
-            console.log(x_avg);
-            console.log(y_avg);
-            x_points = []; 
-            y_points = [];
-        },3000);
-    }
-}
+        <script src="webgazer.js"></script>
+        <script>
+            var overlay = 0;
+            var inuse = 0;
+            function openNav() {
+                overlay = overlay % 4;
+                switch(overlay){
+                    case 0:
+                        document.getElementById("topLeft").style.width = "100%";
+                        break;
+                    case 1:
+                        document.getElementById("topRight").style.width = "100%";
+                        break;
+                    case 2:
+                        document.getElementById("bottomLeft").style.width = "100%";
+                        break;
+                    case 3:
+                        document.getElementById("bottomRight").style.width = "100%";
+                        break;
+                }
+            }
 
-//webgazer
-var VALIDATION_RATE = 50000;
-var x_points = [];
-var y_points = [];
-var validation = false;
+            function closeNav() {
+                switch(overlay){
+                    case 0:
+                        document.getElementById("topLeft").style.width = "0%";
+                        break;
+                    case 1:
+                        document.getElementById("topRight").style.width = "0%";
+                        break;
+                    case 2:
+                        document.getElementById("bottomLeft").style.width = "0%";
+                        break;
+                    case 3:
+                        document.getElementById("bottomRight").style.width = "0%";
+                        break;
+                    }
+                overlay += 1;
+            }
 
-    window.onload = function() {
-      webgazer.setRegression('ridge') /* currently must set regression and tracker */
-      .setTracker('clmtrackr')
-      .setGazeListener(function(data, clock) {
-         //   console.log(data); /* data is an object containing an x and y key which are the x and y prediction coordinates (no bounds limiting) */
-//   console.log(clock); /* elapsed time in milliseconds since webgazer.begin() was called */
-         if((clock % VALIDATION_RATE )< 1000 ){
-             openNav();
-         }
-         if(validation && data != null ){
-             x_points.push(data.x);
-	     y_points.push(data.y);
-         }	   
-      })
-      .begin()
-      .showPredictionPoints(true); /* shows a square every 100 milliseconds where current prediction is */
+            function hardCloseNav() {
+                document.getElementById("topLeft").style.width = "0%";
+                document.getElementById("topRight").style.width = "0%";
+                document.getElementById("bottomLeft").style.width = "0%";
+                document.getElementById("bottomRight").style.width = "0%";
+                overlay = 0;
+            }
 
-      var width = 320;
-      var height = 240;
-      var topDist = '0px';
-      var leftDist = '0px';
+            function startTimer(){
+                if(validation==false){
+                    validation = true;
+                    //call to collect predictions
+                    setTimeout(closeNav,3000);
+                    if(overlay != 3){
+                        setTimeout(openNav,3000);
+                    }
+                    setTimeout(function(){
+                        validation = false;
+                        var x_sum = x_points.reduce(function(a, b) { return a + b; });
+                        var x_avg = x_sum / x_points.length;
+                        var y_sum = y_points.reduce(function(a, b) { return a + b; });
+                        var y_avg = y_sum / y_points.length;
+                        console.log(x_avg);
+                        console.log(y_avg);
+                        x_points = []; 
+                        y_points = [];
+                    },3000);
+                }
+            }
+
+            //webgazer
+            var VALIDATION_RATE = 50000;
+            var x_points = [];
+            var y_points = [];
+            var validation = false;
+
+            window.onload = function() {
+                webgazer.setRegression('ridge') /* currently must set regression and tracker */
+                .setTracker('clmtrackr')
+                .setGazeListener(function(data, clock) {
+                    //console.log(data); /* data is an object containing an x and y key which are the x and y prediction coordinates (no bounds limiting) */
+                    //console.log(clock); /* elapsed time in milliseconds since webgazer.begin() was called */
+                    if((clock % VALIDATION_RATE )< 1000 ){
+                        openNav();
+                    }
+                    if(validation && data != null ){
+                        x_points.push(data.x);
+	                    y_points.push(data.y);
+                    }	   
+                })
+                .begin()
+                .showPredictionPoints(true); /* shows a square every 100 milliseconds where current prediction is */
+
+                var width = 320;
+                var height = 240;
+                var topDist = '0px';
+                var leftDist = '0px';
     
-      var setup = function() {
-        /*var video = document.getElementById('webgazerVideoFeed');
-        video.style.display = 'block';
-        video.style.position = 'absolute';
-        video.style.top = topDist;
-        video.style.left = leftDist;
-        video.width = width;
-        video.height = height;
-        video.style.margin = '0px';
+                var setup = function() {
+                    /*var video = document.getElementById('webgazerVideoFeed');
+                    video.style.display = 'block';
+                    video.style.position = 'absolute';
+                    video.style.top = topDist;
+                    video.style.left = leftDist;
+                    video.width = width;
+                    video.height = height;
+                    video.style.margin = '0px';
 
-        webgazer.params.imgWidth = width;
-        webgazer.params.imgHeight = height;*/
+                    webgazer.params.imgWidth = width;
+                    webgazer.params.imgHeight = height;*/
 
-        var overlay = document.createElement('canvas');
-        overlay.id = 'overlay';
-        overlay.style.position = 'absolute';
-        overlay.width = width;
-        overlay.height = height;
-        overlay.style.top = topDist;
-        overlay.style.left = leftDist;
-        overlay.style.margin = '0px';
+                    var overlay = document.createElement('canvas');
+                    overlay.id = 'overlay';
+                    overlay.style.position = 'absolute';
+                    overlay.width = width;
+                    overlay.height = height;
+                    overlay.style.top = topDist;
+                    overlay.style.left = leftDist;
+                    overlay.style.margin = '0px';
 
-        document.body.appendChild(overlay);
+                    document.body.appendChild(overlay);
 
-        var cl = webgazer.getTracker().clm;
+                    var cl = webgazer.getTracker().clm;
 
-        function drawLoop() {
-          requestAnimFrame(drawLoop);
-          overlay.getContext('2d').clearRect(0,0,width,height);
-          if (cl.getCurrentPosition()) {
-            cl.draw(overlay);
-          }
-        }
-        drawLoop();
-      };
+                    function drawLoop() {
+                        requestAnimFrame(drawLoop);
+                        overlay.getContext('2d').clearRect(0,0,width,height);
+                        if (cl.getCurrentPosition()) {
+                            cl.draw(overlay);
+                        }
+                    }
+                    drawLoop();
+                };
 
-      function checkIfReady() {
-        if (webgazer.isReady()) {
-          setup();
-        } else {
-          setTimeout(checkIfReady, 100);
-        }
-      }
-      setTimeout(checkIfReady,100);
-    };
+                function checkIfReady() {
+                    if (webgazer.isReady()) {
+                        setup();
+                    } else {
+                        setTimeout(checkIfReady, 100);
+                    }
+                }
+                setTimeout(checkIfReady,100);
+            };
 
-    window.onbeforeunload = function() {
-      //webgazer.end(); //Uncomment if you want to save the data even if you reload the page.
-      window.localStorage.clear(); //Comment out if you want to save data across different sessions 
-    }
-  </script>
+            window.onbeforeunload = function() {
+                //webgazer.end(); //Uncomment if you want to save the data even if you reload the page.
+                window.localStorage.clear(); //Comment out if you want to save data across different sessions 
+            }
+        </script>
   
 <div id="fb-root"></div>
 <script>(function(d, s, id) {
@@ -205,44 +225,6 @@ var validation = false;
 
 
   <h3>Hw 11 answers</h3>
-  <!-- This is an HTML comment -->
-
-  <h3>Hw 11 answers</h3>
-  <!-- This is an HTML comment -->
-  <h3>Hw 11 answers</h3>
-  <!-- This is an HTML comment -->
-  <h3>Hw 11 answers</h3>
-  <!-- This is an HTML comment -->
-  <h3>Hw 11 answers</h3>
-  <!-- This is an HTML comment -->
-  <h3>Hw 11 answers</h3>
-  <!-- This is an HTML comment -->
-  <h3>Hw 11 answers</h3>
-  <!-- This is an HTML comment -->
-
-  <h3>Hw 11 answers</h3>
-  <!-- This is an HTML comment -->
-  <h3>Hw 11 answers</h3>
-  <!-- This is an HTML comment -->
-  <h3>Hw 11 answers</h3>
-  <!-- This is an HTML comment -->
-  <h3>Hw 11 answers</h3>
-  <!-- This is an HTML comment -->
-  <h3>Hw 11 answers</h3>
-  <!-- This is an HTML comment -->
-  <h3>Hw 11 answers</h3>
-  <!-- This is an HTML comment -->
-
-  <h3>Hw 11 answers</h3>
-  <!-- This is an HTML comment -->
-  <h3>Hw 11 answers</h3>
-  <!-- This is an HTML comment -->
-  <h3>Hw 11 answers</h3>
-  <!-- This is an HTML comment -->
-  <h3>Hw 11 answers</h3>
-  <!-- This is an HTML comment -->
-  <h3>Hw 11 answers</h3>
-  <!-- This is an HTML comment -->
   
 
   <ul>
@@ -321,6 +303,22 @@ var validation = false;
     top: 15%; /* 25% from the top */
     left: 15%;
 }
+
+/* Position the text inside the overlay*/
+.overlay-text1 {
+    position: absolute;
+    width: 400px;
+    height: 50px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    margin-left: -50px; /* margin is -0.5 * dimension */
+    margin-top: -25px; 
+    color: white;
+    font-size: 20px;
+    text-align: center;
+}
+
 /* Position the content inside the overlay */
 .overlay-content2 {
     position: absolute;
