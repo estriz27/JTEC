@@ -48,10 +48,20 @@
 
   <script src="webgazer.js"></script>
   <script>
+
+var TRUE_X = [0.8,.15,.8,.15];
+var TRUE_Y = [0.8,.15,.15,.8];
+var VALIDATION_RATE = 50000;
+var dist_list = [];
+var x_val_points = [];
+var y_val_points = [];
+var x_points = [];
+var y_points = [];
+var validation = false;
+
 var overlay = 0;
 var inuse = 0;
 function openNav() {
-    overlay = overlay % 4;
     switch(overlay){
         case 0:
             document.getElementById("topLeft").style.width = "100%";
@@ -69,20 +79,19 @@ function openNav() {
 }
 function closeNav() {
     switch(overlay){
-        case 0:
+        case 1:
             document.getElementById("topLeft").style.width = "0%";
             break;
-        case 1:
+        case 2:
             document.getElementById("topRight").style.width = "0%";
             break;
-        case 2:
+        case 3:
             document.getElementById("bottomLeft").style.width = "0%";
             break;
-        case 3:
+        case 0:
             document.getElementById("bottomRight").style.width = "0%";
             break;
     }
-    overlay += 1;
 }
 function hardCloseNav() {
     document.getElementById("topLeft").style.width = "0%";
@@ -90,6 +99,7 @@ function hardCloseNav() {
     document.getElementById("bottomLeft").style.width = "0%";
     document.getElementById("bottomRight").style.width = "0%";
     overlay = 0;
+    dist_list = [];
 }
 function startTimer(){
     if(validation==false){
@@ -101,8 +111,9 @@ function startTimer(){
         }
         setTimeout(function(){
             validation = false;
-            var dist = distance(x_val_points,y_val_points,trueX[overlay],trueY[overlay])
-            /*var x_sum = x_val_points.reduce(function(a, b) { return a + b; });
+            var dist = distance(x_val_points,y_val_points,window.innerWidth*TRUE_X[overlay],window.innerHeight*TRUE_Y[overlay])
+            /*
+            var x_sum = x_val_points.reduce(function(a, b) { return a + b; });
             var x_avg = x_sum / x_val_points.length;
             var y_sum = y_val_points.reduce(function(a, b) { return a + b; });
             var y_avg = y_sum / y_val_points.length;
@@ -111,26 +122,25 @@ function startTimer(){
             */
             var sum_dist = dist.reduce(function(a, b) { return a + b; });
             var avg_dist = sum_dist / dist.length;
+
+            console.log(avg_dist);
+            dist_list.push(avg_dist);
             x_val_points = []; 
             y_val_points = [];
         },3000);
+        overlay += 1;
+        overlay = overlay % 4;
     }
 }
 function distance(x,y,trueX,trueY){
     var dist = [];
     for(i = 0; i<x_val_points.length;i++){
-        dist.push(((x[i]-trueX)^2+(y[i]-trueY)^2)^.5);
+        dist.push(Math.sqrt(Math.pow(x[i]-trueX,2)+Math.pow(y[i]-trueY,2)));
     }
     return dist;
 }
 
 //webgazer
-var VALIDATION_RATE = 50000;
-var x_val_points = [];
-var y_val_points = [];
-var x_points = [];
-var y_points = [];
-var validation = false;
 
 
     window.onload = function() {
@@ -139,6 +149,7 @@ var validation = false;
       .setGazeListener(function(data, clock) {
          //   console.log(data); /* data is an object containing an x and y key which are the x and y prediction coordinates (no bounds limiting) */
 //   console.log(clock); /* elapsed time in milliseconds since webgazer.begin() was called */
+
          if((clock % VALIDATION_RATE )< 1000 ){
              openNav();
          }
