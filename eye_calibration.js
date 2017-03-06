@@ -10767,6 +10767,7 @@ if (typeof exports !== 'undefined') {
 //-----------------------------------End of Brown Work, Continue for JTEC code -----------------------------------------------//
 
 function openCalibration(){
+    console.log(document.getElementById('calibration').style.height);
     document.getElementById('calibration').style.height = "100%";
 }
 
@@ -10779,13 +10780,13 @@ function startWebgazer(){
   		webgazer.setRegression('ridge') /* currently must set regression and tracker */
   		.setTracker('clmtrackr')
   		.setGazeListener(function(data, clock) {
-    		console.log(data); /* data is an object containing an x and y key which are the x and y prediction coordinates (no bounds limiting) */
-        	console.log(clock); /* elapsed time in milliseconds since webgazer.begin() was called */     
+    		//console.log(data); /* data is an object containing an x and y key which are the x and y prediction coordinates (no bounds limiting) */
+        	//console.log(clock); /* elapsed time in milliseconds since webgazer.begin() was called */   
     	})
     	.begin()
     	.showPredictionPoints(true); /* shows a square every 100 milliseconds where current prediction is */      
 
-		openNav();
+		  openCalibration();
 
     	var width = 320;
     	var height = 240;
@@ -10793,7 +10794,7 @@ function startWebgazer(){
     	var leftDist = '0px';
     
     	var setup = function() {
-    		/*var video = document.getElementById('webgazerVideoFeed');
+    	    /*var video = document.getElementById('webgazerVideoFeed');
         	video.style.display = 'block';
         	video.style.position = 'absolute';
 			video.style.top = topDist;
