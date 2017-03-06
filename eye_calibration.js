@@ -10766,12 +10766,12 @@ if (typeof exports !== 'undefined') {
 
 //-----------------------------------End of Brown Work, Continue for JTEC code -----------------------------------------------//
 
-function openNav(){
-    document.getElementById('nav').style.height = "100%";
+function openCalibration(){
+    document.getElementById('calibration').style.height = "100%";
 }
 
-function closeNav(){
-    document.getElementById('nav').style.height = "0%";
+function closeCalibration(){
+    document.getElementById('calibration').style.height = "0%";
 }
 
 function startWebgazer(){
