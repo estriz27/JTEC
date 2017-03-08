@@ -10,7 +10,7 @@
 		<script type="text/javascript">
 
 		Parse.initialize("a3Vzn4zfnMObdOfhNJJEdhiFaAdG62rz1Z8ictHmG");
-		Parse.serverURL = 'http://localhost:1337/parse'
+		Parse.serverURL = 'http://jtec-dev.us-east-1.elasticbeanstalk.com/parse'
 		var EyeData = Parse.Object.extend("EyeData")
 		var query = new Parse.Query(EyeData);
 		query.equalTo("objectId", "uIrUsYfAxu");
@@ -20,7 +20,7 @@
 		    // Do something with the returned Parse.Object values
 		    for (var i = 0; i < results.length; i++) {
 		      var object = results[i];
-		      alert(object.id + ' has a:' + '\n'+  'x value of ' + object.get('x') + '\n' + 
+		      alert(object.id + ' has a:' + '\n'+  'x value of ' + object.get('x') + '\n' +
 		      'y value of ' + object.get('y') + '\n' +
 		      'timestamp of ' + object.get('time_stamp'));
 		    }
@@ -29,7 +29,7 @@
 		    alert("Error: " + error.code + " " + error.message);
 		  }
 		});
-			
+
 
 		</script>
 
