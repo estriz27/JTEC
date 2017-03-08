@@ -1,7 +1,7 @@
 {
   "apps": [
     {
-      "serverURL": "http://localhost:1337/parse",
+      "serverURL": "http://jtec-dev.us-east-1.elasticbeanstalk.com/parse",
       "appId": "a3Vzn4zfnMObdOfhNJJEdhiFaAdG62rz1Z8ictHmG",
       "masterKey": "IZWWhVXv4m14sxQb0Ct8bqLIWM29tigE7DLaSMve",
       "appName": "JTEC"
