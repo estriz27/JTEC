@@ -3,40 +3,109 @@
 
 
 <!-- The overlay -->
-<div id="myNav" class="overlay">
+<div id="topLeft" class="overlay">
 
   <!-- Button to close the overlay navigation -->
-  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+  <a href="javascript:void(0)" class="closebtn" onclick="hardCloseNav()">&times;</a>
 
   <!-- Overlay content -->
-  
-
   <div class="overlay-content1">
-    <img src="reddot.png" height="100">
+    <img src="reddot.png" height="100" onclick="startTimer()">
   </div>
+
+</div>
+
+<div id="topRight" class="overlay">
+
+  <!-- Button to close the overlay navigation -->
+  <a href="javascript:void(0)" class="closebtn" onclick="hardCloseNav()">&times;</a>
+
+  <!-- Overlay content -->
   <div class="overlay-content2">
-    <img src="reddot.png" height="100">
+    <img src="reddot.png" height="100" onclick="startTimer()">
   </div>
+
+</div>
+<div id="bottomLeft" class="overlay">
+
+  <!-- Button to close the overlay navigation -->
+  <a href="javascript:void(0)" class="closebtn" onclick="hardCloseNav()">&times;</a>
+
+  <!-- Overlay content -->
   <div class="overlay-content3">
-    <img src="reddot.png" height="100">
+    <img src="reddot.png" height="100" onclick="startTimer()">
   </div>
+
+</div>
+<div id="bottomRight" class="overlay">
+
+  <!-- Button to close the overlay navigation -->
+  <a href="javascript:void(0)" class="closebtn" onclick="hardCloseNav()">&times;</a>
+
+  <!-- Overlay content -->
   <div class="overlay-content4">
-    <img src="reddot.png" height="100">
+    <img src="reddot.png" height="100" onclick="startTimer()">
   </div>
 
 </div>
 
 <!-- Use any element to open/show the overlay navigation menu -->
-<span onclick="openNav()">open</span>
-
+<span onclick="openNav()">open1</span>
 
 <script>
+var overlay = 0;
+var inuse = 0;
 function openNav() {
-    document.getElementById("myNav").style.width = "100%";
+    overlay = overlay % 4;
+    switch(overlay){
+        case 0:
+            document.getElementById("topLeft").style.width = "100%";
+            break;
+        case 1:
+            document.getElementById("topRight").style.width = "100%";
+            break;
+        case 2:
+            document.getElementById("bottomLeft").style.width = "100%";
+            break;
+        case 3:
+            document.getElementById("bottomRight").style.width = "100%";
+            break;
+    }
 }
-
 function closeNav() {
-    document.getElementById("myNav").style.width = "0%";
+    switch(overlay){
+        case 0:
+            document.getElementById("topLeft").style.width = "0%";
+            break;
+        case 1:
+            document.getElementById("topRight").style.width = "0%";
+            break;
+        case 2:
+            document.getElementById("bottomLeft").style.width = "0%";
+            break;
+        case 3:
+            document.getElementById("bottomRight").style.width = "0%";
+            break;
+    }
+    overlay += 1;
+}
+function hardCloseNav() {
+    document.getElementById("topLeft").style.width = "0%";
+    document.getElementById("topRight").style.width = "0%";
+    document.getElementById("bottomLeft").style.width = "0%";
+    document.getElementById("bottomRight").style.width = "0%";
+    overlay = 0;
+}
+function startTimer(){
+    if(inuse == 0){
+        inuse = 1;
+        //call to collect predictions
+        setTimeout(closeNav,3000);
+        if(overlay != 3){
+            setTimeout(openNav,3000);
+        }
+        setTimeout(function(){inuse = 0;},3000);
+    }
 }
 </script>
      
@@ -44,6 +113,7 @@ function closeNav() {
 </body>
 
 <style>
+
 /* The Overlay (background) */
 .overlay {
     /* Height & width depends on how you want to reveal the overlay (see JS below) */    
@@ -64,28 +134,13 @@ function closeNav() {
     position: absolute;
     top: 15%; /* 25% from the top */
     left: 15%;
-    /*width: 100%; /* 100% width */
-    /*text-align: ceter; /* Centered text/links */
-    /*
-    position: absolute;
-    top: 650px;
-    left: 100px;
-    */    
-   /*margin-top: 30px; /* 30px top margin to avoid conflict with the close button on smaller screens */
+
 }
 /* Position the content inside the overlay */
 .overlay-content2 {
     position: absolute;
     top: 15%; /* 25% from the top */
     left: 80%;
-    /*width: 100%; /* 100% width */
-    /*text-align: ceter; /* Centered text/links */
-    /*
-    position: absolute;
-    top: 650px;
-    left: 100px;
-    */    
-    /*margin-top: 30px; /* 30px top margin to avoid conflict with the close button on smaller screens */
 }
 
 /* Position the content inside the overlay */
@@ -93,14 +148,6 @@ function closeNav() {
     position: absolute;
     top: 80%; /* 25% from the top */
     left: 15%;
-    /*width: 100%; /* 100% width */
-    /*text-align: ceter; /* Centered text/links */
-    /*
-    position: absolute;
-    top: 650px;
-    left: 100px;
-    */    
-    /*margin-top: 30px; /* 30px top margin to avoid conflict with the close button on smaller screens */
 }
 
 /* Position the content inside the overlay */
@@ -108,20 +155,11 @@ function closeNav() {
     position: absolute;
     top: 80%; /* 25% from the top */
     left: 80%;
-    /*width: 100%; /* 100% width */
-    /*text-align: ceter; /* Centered text/links */
-    /*
-    position: absolute;
-    top: 650px;
-    left: 100px;
-    */    
-    /* margin-top: 30px; /* 30px top margin to avoid conflict with the close button on smaller screens */
 }
 
 
 
 /* The navigation links inside the overlay */
-
 .overlay a {
     padding: 8px;
     text-decoration: none;
@@ -131,13 +169,6 @@ function closeNav() {
     transition: 0.3s; /* Transition effects on hover (color) */
 }
 
-/* When you mouse over the navigation links, change their color */
-/*
-.overlay a:hover, .overlay a:focus {
-    color: #f1f1f1;
-}
-*/
-
 /* Position the close button (top right corner) */
 .overlay .closebtn {
     position: absolute;
@@ -146,16 +177,6 @@ function closeNav() {
     font-size: 60px;
 }
 
-/* When the height of the screen is less than 450 pixels, change the font-size of the links and position the close button again, so they don't overlap */
-/*
-@media screen and (max-height: 450px) {
-    .overlay a {font-size: 20px}
-    .overlay .closebtn {
-        font-size: 40px;
-        top: 15px;
-        right: 35px;
-    }
-}
-*/
+
 </style>
 </html>
