@@ -11,18 +11,26 @@
 
 		Parse.initialize("a3Vzn4zfnMObdOfhNJJEdhiFaAdG62rz1Z8ictHmG");
 		Parse.serverURL = 'http://jtec-dev.us-east-1.elasticbeanstalk.com/parse'
+
 		var EyeData = Parse.Object.extend("EyeData")
 		var query = new Parse.Query(EyeData);
-		query.equalTo("objectId", "uIrUsYfAxu");
+		
+		var categoryPointer = {
+			__type: 'Pointer',
+			className: "_User",
+			objectId: "hqHBsO9cBO"
+
+		}
+		query.equalTo("user", categoryPointer);
 		query.find({
 		  success: function(results) {
 		    alert("Successfully retrieved " + results.length + " value");
 		    // Do something with the returned Parse.Object values
 		    for (var i = 0; i < results.length; i++) {
 		      var object = results[i];
-		      alert(object.id + ' has a:' + '\n'+  'x value of ' + object.get('x') + '\n' +
-		      'y value of ' + object.get('y') + '\n' +
-		      'timestamp of ' + object.get('time_stamp'));
+		      alert(object.id + ' has a:' + '\n'+  'x value of ' + object.get('x_array') + '\n' +
+		      'y value of ' + object.get('y_array') + '\n' +
+		      'timestamp of ' + object.get('timestamp_array'));
 		    }
 		  },
 		  error: function(error) {
