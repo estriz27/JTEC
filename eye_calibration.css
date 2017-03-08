@@ -7,6 +7,7 @@
     background: rgba(1,1,1,.9);
     overflow-x: hidden;
     transition: all 0.5s;
+    z-index: 1;
 }
 
 .overlay__content{
@@ -33,16 +34,11 @@
 
 }
 
-.circleCal {
-    border-radius: 50%;
+.overlay .calDot{
+    position: relative;
+    top: 95%;
+    left: 5%;
+    color: #f00;
+    font-size: 50px;
 }
 
-.type1 {
-    position: relative;
-    top: 5%;
-    left: 5%;
-    width: 30px;
-    height: 30px;
-    background: red;
-    border: 3px solid red;
-}

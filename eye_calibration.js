@@ -10767,7 +10767,6 @@ if (typeof exports !== 'undefined') {
 //-----------------------------------End of Brown Work, Continue for JTEC code -----------------------------------------------//
 
 function openCalibration(){
-    console.log(document.getElementById('calibration').style.height);
     document.getElementById('calibration').style.height = "100%";
 }
 
@@ -10775,8 +10774,18 @@ function closeCalibration(){
     document.getElementById('calibration').style.height = "0%";
 }
 
+function moveCalibrationDot(){
+	/*var calDot = document.getElementBy('calibrationDot'),
+    style = window.getComputedStyle(calDot),
+    top = style.getPropertyValue('top');
+
+	console.log(top);*/
+	console.log("Hello");
+}
+
 function startWebgazer(){
 	window.onload = function() {
+
   		webgazer.setRegression('ridge') /* currently must set regression and tracker */
   		.setTracker('clmtrackr')
   		.setGazeListener(function(data, clock) {
