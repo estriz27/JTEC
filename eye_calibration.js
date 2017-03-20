@@ -10775,11 +10775,36 @@ function closeCalibration(){
 }
 
 function moveCalibrationDot(){
-	  var calDot = document.getElementBy('calibrationDot'),
-    style = window.getComputedStyle(calDot),
-    top = style.getPropertyValue('top');
+    var calDot = document.getElementById('calibrationDot'),
+    dotStyle = window.getComputedStyle(calDot);
+    var calWindow = document.getElementById('calibration'),
+    winStyle = window.getComputedStyle(calWindow);
 
-	  console.log(top);
+    var top = parseFloat(dotStyle.getPropertyValue('top'));
+    var left = parseFloat(dotStyle.getPropertyValue('left'));
+    
+    var width = parseFloat(winStyle.getPropertyValue('width'));
+    var height = parseFloat(winStyle.getPropertyValue('height'));
+
+    var percentWidth = Math.round(left/width*100);
+    var percentHeight = Math.round(top/height*100);
+
+    if (percentWidth == 5 && percentHeight == 5){
+	calDot.style.left = width*.95;
+    }
+    else if (percentWidth ==95 && percentHeight == 5){
+	calDot.style.top = height*.95;
+    }
+    else if (percentWidth ==95 && percentHeight == 95){
+        calDot.style.left = width*.05;
+    }
+    else if (percentWidth ==5 && percentHeight == 95){
+        calDot.style.top = height*.5;
+	calDot.style.left = width*.5;
+    }
+    else if (percentWidth ==50 && percentHeight == 50){
+        closeCalibration();
+    }
 }
 
 function startWebgazer(){
