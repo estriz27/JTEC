@@ -1,5 +1,4 @@
 <html>
-
 <head>
   <title>Hw 11, problem 1 lab page</title>
 </head>
@@ -53,6 +52,9 @@
 var TRUE_X = [0.8,.15,.8,.15];
 var TRUE_Y = [0.8,.15,.15,.8];
 var VALIDATION_RATE = 10000;
+var SIZE_OF_CIRCLE = 100;
+var in_circle = 0;
+var out_circle = 0;
 var dist_list = [];
 var x_val_points = [];
 var y_val_points = [];
@@ -116,20 +118,15 @@ function startTimer(){
         }
         setTimeout(function(){
             collect_validation = false;
-            var dist = distance(x_val_points,y_val_points,window.innerWidth*TRUE_X[overlay],window.innerHeight*TRUE_Y[overlay])
-            /*
-            var x_sum = x_val_points.reduce(function(a, b) { return a + b; });
-            var x_avg = x_sum / x_val_points.length;
-            var y_sum = y_val_points.reduce(function(a, b) { return a + b; });
-            var y_avg = y_sum / y_val_points.length;
-            console.log(x_avg);
-            console.log(y_avg);
-            */
-            var sum_dist = dist.reduce(function(a, b) { return a + b; });
-            var avg_dist = sum_dist / dist.length;
-
-            console.log(avg_dist);
-            dist_list.push(avg_dist);
+            var distances = distance(x_val_points , y_val_points, window.innerWidth * TRUE_X[overlay], window.innerHeight * TRUE_Y[overlay])
+            for( index = 0;index < distances.length; index++){
+                if(SIZE_OF_CIRCLE > distances[index]){
+                    in_circle += 1;
+                }
+                else{
+                    out_circle += 1;
+                }
+            }
             x_val_points = []; 
             y_val_points = [];
         },3000);
@@ -158,7 +155,7 @@ function distance(x,y,trueX,trueY){
          
          if((clock - last_validation) > VALIDATION_RATE ){
              openNav();
-             in_validation = ture;
+             in_validation = true;
          }
          if(in_validation){
              if(collect_validation){
@@ -188,57 +185,57 @@ function distance(x,y,trueX,trueY){
       var topDist = '0px';
       var leftDist = '0px';
     
-                var setup = function() {
-                    /*var video = document.getElementById('webgazerVideoFeed');
-                    video.style.display = 'block';
-                    video.style.position = 'absolute';
-                    video.style.top = topDist;
-                    video.style.left = leftDist;
-                    video.width = width;
-                    video.height = height;
-                    video.style.margin = '0px';
+      var setup = function() {
+        /*var video = document.getElementById('webgazerVideoFeed');
+        video.style.display = 'block';
+        video.style.position = 'absolute';
+        video.style.top = topDist;
+        video.style.left = leftDist;
+        video.width = width;
+        video.height = height;
+        video.style.margin = '0px';
 
-                    webgazer.params.imgWidth = width;
-                    webgazer.params.imgHeight = height;*/
+        webgazer.params.imgWidth = width;
+        webgazer.params.imgHeight = height;*/
 
-                    var overlay = document.createElement('canvas');
-                    overlay.id = 'overlay';
-                    overlay.style.position = 'absolute';
-                    overlay.width = width;
-                    overlay.height = height;
-                    overlay.style.top = topDist;
-                    overlay.style.left = leftDist;
-                    overlay.style.margin = '0px';
+        var overlay = document.createElement('canvas');
+        overlay.id = 'overlay';
+        overlay.style.position = 'absolute';
+        overlay.width = width;
+        overlay.height = height;
+        overlay.style.top = topDist;
+        overlay.style.left = leftDist;
+        overlay.style.margin = '0px';
 
-                    document.body.appendChild(overlay);
+        document.body.appendChild(overlay);
 
-                    var cl = webgazer.getTracker().clm;
+        var cl = webgazer.getTracker().clm;
 
-                    function drawLoop() {
-                        requestAnimFrame(drawLoop);
-                        overlay.getContext('2d').clearRect(0,0,width,height);
-                        if (cl.getCurrentPosition()) {
-                            cl.draw(overlay);
-                        }
-                    }
-                    drawLoop();
-                };
+        function drawLoop() {
+          requestAnimFrame(drawLoop);
+          overlay.getContext('2d').clearRect(0,0,width,height);
+          if (cl.getCurrentPosition()) {
+            cl.draw(overlay);
+          }
+        }
+        drawLoop();
+      };
 
-                function checkIfReady() {
-                    if (webgazer.isReady()) {
-                        setup();
-                    } else {
-                        setTimeout(checkIfReady, 100);
-                    }
-                }
-                setTimeout(checkIfReady,100);
-            };
+      function checkIfReady() {
+        if (webgazer.isReady()) {
+          setup();
+        } else {
+          setTimeout(checkIfReady, 100);
+        }
+      }
+      setTimeout(checkIfReady,100);
+    };
 
-            window.onbeforeunload = function() {
-                //webgazer.end(); //Uncomment if you want to save the data even if you reload the page.
-                window.localStorage.clear(); //Comment out if you want to save data across different sessions 
-            }
-        </script>
+    window.onbeforeunload = function() {
+      //webgazer.end(); //Uncomment if you want to save the data even if you reload the page.
+      window.localStorage.clear(); //Comment out if you want to save data across different sessions 
+    }
+  </script>
   
 <div id="fb-root"></div>
 <script>(function(d, s, id) {
@@ -252,6 +249,44 @@ function distance(x,y,trueX,trueY){
 
 
   <h3>Hw 11 answers</h3>
+  <!-- This is an HTML comment -->
+
+  <h3>Hw 11 answers</h3>
+  <!-- This is an HTML comment -->
+  <h3>Hw 11 answers</h3>
+  <!-- This is an HTML comment -->
+  <h3>Hw 11 answers</h3>
+  <!-- This is an HTML comment -->
+  <h3>Hw 11 answers</h3>
+  <!-- This is an HTML comment -->
+  <h3>Hw 11 answers</h3>
+  <!-- This is an HTML comment -->
+  <h3>Hw 11 answers</h3>
+  <!-- This is an HTML comment -->
+
+  <h3>Hw 11 answers</h3>
+  <!-- This is an HTML comment -->
+  <h3>Hw 11 answers</h3>
+  <!-- This is an HTML comment -->
+  <h3>Hw 11 answers</h3>
+  <!-- This is an HTML comment -->
+  <h3>Hw 11 answers</h3>
+  <!-- This is an HTML comment -->
+  <h3>Hw 11 answers</h3>
+  <!-- This is an HTML comment -->
+  <h3>Hw 11 answers</h3>
+  <!-- This is an HTML comment -->
+
+  <h3>Hw 11 answers</h3>
+  <!-- This is an HTML comment -->
+  <h3>Hw 11 answers</h3>
+  <!-- This is an HTML comment -->
+  <h3>Hw 11 answers</h3>
+  <!-- This is an HTML comment -->
+  <h3>Hw 11 answers</h3>
+  <!-- This is an HTML comment -->
+  <h3>Hw 11 answers</h3>
+  <!-- This is an HTML comment -->
   
 
   <ul>
@@ -330,22 +365,6 @@ function distance(x,y,trueX,trueY){
     top: 15%; /* 25% from the top */
     left: 15%;
 }
-
-/* Position the text inside the overlay*/
-.overlay-text1 {
-    position: absolute;
-    width: 400px;
-    height: 50px;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    margin-left: -50px; /* margin is -0.5 * dimension */
-    margin-top: -25px; 
-    color: white;
-    font-size: 20px;
-    text-align: center;
-}
-
 /* Position the content inside the overlay */
 .overlay-content2 {
     position: absolute;
