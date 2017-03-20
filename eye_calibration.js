@@ -10774,6 +10774,7 @@ function openCalibration(){
 function endCalibration(){
     //calibration has been completed so close overlay
     document.getElementById('calibration').style.height = "0%";
+    inCalibration = false;
 }
 
 function closeCalibration(){
@@ -10783,6 +10784,7 @@ function closeCalibration(){
 	window.localStorage.clear();
 	webgazer.pause();
     }
+    inCalibration = false;
 }
 
 function moveCalibrationDot(){
@@ -10836,6 +10838,7 @@ function startWebgazer(){
     	    .showPredictionPoints(true); /* shows a square every 100 milliseconds where current prediction is */      
 	
 	//webgazer has been started so open the calibration
+	inCalibration = true;
 	openCalibration();
 	
 	function checkIfReady() {
@@ -10853,6 +10856,9 @@ function startWebgazer(){
 	//Comment out if you want to save data across different sessions 
     }
 }
+
+//global variables
+var inCalibration = false;
 
 //webpage has just opened, ask if we can track their eyes
 if (confirm("Can we use your eye tracking data?")){
