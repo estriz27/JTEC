@@ -52,6 +52,9 @@
 var TRUE_X = [0.8,.15,.8,.15];
 var TRUE_Y = [0.8,.15,.15,.8];
 var VALIDATION_RATE = 10000;
+var SIZE_OF_CIRCLE = 100;
+var in_circle = 0;
+var out_circle = 0;
 var dist_list = [];
 var x_val_points = [];
 var y_val_points = [];
@@ -115,20 +118,15 @@ function startTimer(){
         }
         setTimeout(function(){
             collect_validation = false;
-            var dist = distance(x_val_points,y_val_points,window.innerWidth*TRUE_X[overlay],window.innerHeight*TRUE_Y[overlay])
-            /*
-            var x_sum = x_val_points.reduce(function(a, b) { return a + b; });
-            var x_avg = x_sum / x_val_points.length;
-            var y_sum = y_val_points.reduce(function(a, b) { return a + b; });
-            var y_avg = y_sum / y_val_points.length;
-            console.log(x_avg);
-            console.log(y_avg);
-            */
-            var sum_dist = dist.reduce(function(a, b) { return a + b; });
-            var avg_dist = sum_dist / dist.length;
-
-            console.log(avg_dist);
-            dist_list.push(avg_dist);
+            var distances = distance(x_val_points , y_val_points, window.innerWidth * TRUE_X[overlay], window.innerHeight * TRUE_Y[overlay])
+            for( index = 0;index < distances.length; index++){
+                if(SIZE_OF_CIRCLE > distances[index]){
+                    in_circle += 1;
+                }
+                else{
+                    out_circle += 1;
+                }
+            }
             x_val_points = []; 
             y_val_points = [];
         },3000);
@@ -157,7 +155,7 @@ function distance(x,y,trueX,trueY){
          
          if((clock - last_validation) > VALIDATION_RATE ){
              openNav();
-             in_validation = ture;
+             in_validation = true;
          }
          if(in_validation){
              if(collect_validation){
