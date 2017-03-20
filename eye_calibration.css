@@ -35,7 +35,7 @@
 }
 
 .overlay .calDot{
-    position: relative;
+    position: absolute;
     top: 5%;
     left: 5%;
     color: #f00;

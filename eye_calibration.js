@@ -10775,12 +10775,11 @@ function closeCalibration(){
 }
 
 function moveCalibrationDot(){
-	/*var calDot = document.getElementBy('calibrationDot'),
+	  var calDot = document.getElementBy('calibrationDot'),
     style = window.getComputedStyle(calDot),
     top = style.getPropertyValue('top');
 
-	console.log(top);*/
-	console.log("Hello");
+	  console.log(top);
 }
 
 function startWebgazer(){
