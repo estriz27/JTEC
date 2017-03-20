@@ -10767,28 +10767,45 @@ if (typeof exports !== 'undefined') {
 //-----------------------------------End of Brown Work, Continue for JTEC code -----------------------------------------------//
 
 function openCalibration(){
+    //opens the calibration overlay
     document.getElementById('calibration').style.height = "100%";
 }
 
-function closeCalibration(){
+function endCalibration(){
+    //calibration has been completed so close overlay
     document.getElementById('calibration').style.height = "0%";
 }
 
+function closeCalibration(){
+    //cancel calibration
+    if (confirm('Are you sure you want to stop calibration? This will stop the eye tracking software.')){
+	document.getElementById('calibration').style.height = "0%";
+	window.localStorage.clear();
+	webgazer.pause();
+    }
+}
+
 function moveCalibrationDot(){
+    
+    //calculate styles for the dot and the window
     var calDot = document.getElementById('calibrationDot'),
     dotStyle = window.getComputedStyle(calDot);
     var calWindow = document.getElementById('calibration'),
     winStyle = window.getComputedStyle(calWindow);
 
+    //get location of dot
     var top = parseFloat(dotStyle.getPropertyValue('top'));
     var left = parseFloat(dotStyle.getPropertyValue('left'));
     
+    //get size of window
     var width = parseFloat(winStyle.getPropertyValue('width'));
     var height = parseFloat(winStyle.getPropertyValue('height'));
 
+    //find location of dot relative to window size
     var percentWidth = Math.round(left/width*100);
     var percentHeight = Math.round(top/height*100);
 
+    //move dot based of current location
     if (percentWidth == 5 && percentHeight == 5){
 	calDot.style.left = width*.95;
     }
@@ -10803,83 +10820,43 @@ function moveCalibrationDot(){
 	calDot.style.left = width*.5;
     }
     else if (percentWidth ==50 && percentHeight == 50){
-        closeCalibration();
+        endCalibration();
     }
 }
 
 function startWebgazer(){
-	window.onload = function() {
-
-  		webgazer.setRegression('ridge') /* currently must set regression and tracker */
-  		.setTracker('clmtrackr')
-  		.setGazeListener(function(data, clock) {
-    		//console.log(data); /* data is an object containing an x and y key which are the x and y prediction coordinates (no bounds limiting) */
-        	//console.log(clock); /* elapsed time in milliseconds since webgazer.begin() was called */   
-    	})
-    	.begin()
-    	.showPredictionPoints(true); /* shows a square every 100 milliseconds where current prediction is */      
-
-		  openCalibration();
-
-    	var width = 320;
-    	var height = 240;
-    	var topDist = '0px';
-    	var leftDist = '0px';
-    
-    	var setup = function() {
-    	    /*var video = document.getElementById('webgazerVideoFeed');
-        	video.style.display = 'block';
-        	video.style.position = 'absolute';
-			video.style.top = topDist;
-			video.style.left = leftDist;
-			video.width = width;
-			video.height = height;
-			video.style.margin = '0px';
-
-			webgazer.params.imgWidth = width;
-			webgazer.params.imgHeight = height;*/
-
-			var overlay = document.createElement('canvas');
-			overlay.id = 'overlay';
-			overlay.style.position = 'absolute';
-			overlay.width = width;
-			overlay.height = height;
-			overlay.style.top = topDist;
-			overlay.style.left = leftDist;
-			overlay.style.margin = '0px';
-
-			document.body.appendChild(overlay);
-
-			var cl = webgazer.getTracker().clm;
-
-			function drawLoop() {
-          		requestAnimFrame(drawLoop);
-				overlay.getContext('2d').clearRect(0,0,width,height);
-				if (cl.getCurrentPosition()) {
-            		cl.draw(overlay);
-          		}
-        	}
-        	drawLoop();
-      	};
-
-      	function checkIfReady() {
-        	if (webgazer.isReady()) {
-          		setup();
-        	} else {
-          		setTimeout(checkIfReady, 100);
-        	}
+    window.onload = function() {
+	
+  	webgazer.setRegression('ridge') /* currently must set regression and tracker */
+  	    .setTracker('clmtrackr')
+  	    .setGazeListener(function(data, clock) {
+    		//loop for collecting data as well as starting validations
+    	    })
+    	    .begin()
+    	    .showPredictionPoints(true); /* shows a square every 100 milliseconds where current prediction is */      
+	
+	//webgazer has been started so open the calibration
+	openCalibration();
+	
+	function checkIfReady() {
+            if (webgazer.isReady()) {
+          	setup();
+            } else {
+          	setTimeout(checkIfReady, 100);
+            }
       	}
       	setTimeout(checkIfReady,100);
-	};
-
+    };
+    
     window.onbeforeunload = function() {
-      //webgazer.end(); //Uncomment if you want to save the data even if you reload the page.
-      window.localStorage.clear(); //Comment out if you want to save data across different sessions 
+	window.localStorage.clear(); 
+	//Comment out if you want to save data across different sessions 
     }
 }
 
+//webpage has just opened, ask if we can track their eyes
 if (confirm("Can we use your eye tracking data?")){
-	startWebgazer()
+    startWebgazer()
 }
 
 
