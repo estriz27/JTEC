@@ -10767,7 +10767,6 @@ if (typeof exports !== 'undefined') {
 //-----------------------------------End of Brown Work, Continue for JTEC code -----------------------------------------------//
 
 function openCalibration(){
-    console.log(document.getElementById('calibration').style.height);
     document.getElementById('calibration').style.height = "100%";
 }
 
@@ -10775,8 +10774,42 @@ function closeCalibration(){
     document.getElementById('calibration').style.height = "0%";
 }
 
+function moveCalibrationDot(){
+    var calDot = document.getElementById('calibrationDot'),
+    dotStyle = window.getComputedStyle(calDot);
+    var calWindow = document.getElementById('calibration'),
+    winStyle = window.getComputedStyle(calWindow);
+
+    var top = parseFloat(dotStyle.getPropertyValue('top'));
+    var left = parseFloat(dotStyle.getPropertyValue('left'));
+    
+    var width = parseFloat(winStyle.getPropertyValue('width'));
+    var height = parseFloat(winStyle.getPropertyValue('height'));
+
+    var percentWidth = Math.round(left/width*100);
+    var percentHeight = Math.round(top/height*100);
+
+    if (percentWidth == 5 && percentHeight == 5){
+	calDot.style.left = width*.95;
+    }
+    else if (percentWidth ==95 && percentHeight == 5){
+	calDot.style.top = height*.95;
+    }
+    else if (percentWidth ==95 && percentHeight == 95){
+        calDot.style.left = width*.05;
+    }
+    else if (percentWidth ==5 && percentHeight == 95){
+        calDot.style.top = height*.5;
+	calDot.style.left = width*.5;
+    }
+    else if (percentWidth ==50 && percentHeight == 50){
+        closeCalibration();
+    }
+}
+
 function startWebgazer(){
 	window.onload = function() {
+
   		webgazer.setRegression('ridge') /* currently must set regression and tracker */
   		.setTracker('clmtrackr')
   		.setGazeListener(function(data, clock) {
