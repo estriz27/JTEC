@@ -1,18 +1,53 @@
 <html>
 
 	<head>
-		
+
 	</head>
-	<div id="myDiv" style="width:1000px;height:600px;"></div>
+	<div id="myDiv" style="width:1440px;height:900px;"></div>
 
 	<body>
 
 		<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 		<script type="text/javascript">
+		var a = 225;
+		var b = 360;
+
+		function create_blank_array(a,b)
+		{
+		var array = new Array(a);
+		for (i= 0; i < a; i ++){
+			array[i] = new Array(b)
+			}
+
+
+		for (x = 0; x < a; x++){
+			for(y = 0; y<b; y++){
+				array[x][y] = 0;
+			}
+		}
+		return array;
+		}
+
+	function populate_array(x_array, y_array,screen_size){
+		var min_size = Math.min(x_array.length,y_array.length);
+		var array = create_blank_array(screen_size[1]+1,screen_size[0]+1);
+		for (i = 0; i < min_size; i++){
+			var x = y_array[i];
+			var y = x_array[i];
+			console.log(x_array[i]);
+			console.log(y_array[i]);
+			array[x][y]= array[x][y]+1;
+		}
+		return array;
+	}
+
+	var x_array = [6,4,10,4,2,10,10];
+	var y_array = [5,6,6,7,3,6,6];
+	var screen_size = [10,7];
 
 			var data = [
 		  {
-		    z: [[1, 20, 30], [20, 1, 20], [30, 60, 1]],
+		    z: populate_array(x_array, y_array,screen_size),
 		    type: 'heatmap'
 		  }
 		];
