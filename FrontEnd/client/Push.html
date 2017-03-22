@@ -12,7 +12,7 @@
 		Parse.initialize("a3Vzn4zfnMObdOfhNJJEdhiFaAdG62rz1Z8ictHmG");
 		Parse.serverURL = 'http://jtec-dev.us-east-1.elasticbeanstalk.com/parse'
 		var EyeData = Parse.Object.extend("EyeData")
-		
+
 
 		function initializeUser(){
 			if (Parse.User.current() != null){
@@ -45,18 +45,24 @@
 		        text += possible.charAt(Math.floor(Math.random() * possible.length));
 
 		    return text;
-		}	
+		}
 
-		function pushData(x_array,y_array,timestamp_array){
+		function pushData(x_array,y_array,timestamp_array, screen_size, valid, valid_percent){
 			var newSet = new EyeData();
-			x_array = x_array || [];
-			y_array = y_array || [];
-			timestamp_array = timestamp_array || ["Timestamp Did Not Successfully Get Pushed"];
+			var x_array = x_array || [];
+			var y_array = y_array || [];
+			var timestamp_array = timestamp_array || ["Timestamp Did Not Successfully Get Pushed"];
+			var screen_size = screen_size || [];
+			var valid = valid || null;
+			var valid_percent = valid_percent || null;
 
 			newSet.set("user",Parse.User.current());
 			newSet.set("x_array",x_array);
 			newSet.set("y_array",y_array);
 			newSet.set("timestamp_array",timestamp_array);
+			newSet.set("screen_size", screen_size);
+			newSet.set("valid", valid);
+			newSet.set("valid_percent", valid_percent);
 
 
 			newSet.save(null, {
@@ -91,14 +97,18 @@
 
 		var date = new Date();
 		var my_timestamp_array = [date,date,date,date,date];
-		pushData(my_x_array,my_y_array,my_timestamp_array);
+		var screen_size = [10,10];
+		var valid = true;
+		var valid_percent = 75
+
+		pushData(my_x_array,my_y_array,my_timestamp_array, screen_size, valid, valid_percent);
 		}
 
 		logOut();
 
 
 
-	
+
 
 		</script>
 
