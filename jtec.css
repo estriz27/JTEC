@@ -42,6 +42,24 @@
     font-size: 50px;
 }
 
+.overlay .valDotActive{
+    position: absolute;
+    color: #f00;
+    font-size: 50px;
+    animation-name: blink;
+    animation-duration: 1s;
+    animation-iteration-count: 3;
+}
+
+@keyframes blink{
+
+    0% {color: #f00;}
+    25% {color: #f55;}
+    50% {color: #faa;}
+    75% {color: #f55;}
+    100% {color: #f00;}
+}
+
 .overlay .valDot{
     position: absolute;
     top: 15%;

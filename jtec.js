@@ -10791,6 +10791,8 @@ function endValidation(){
 }
 
 function moveValidationDot(){
+    document.getElementById('validationDot').classList.toggle('valDotActive');
+
     //calculate styles for the dot and the window                                        
     var valDot = document.getElementById('validationDot'),
     dotStyle = window.getComputedStyle(valDot);
@@ -10859,6 +10861,7 @@ function endCalibration(){
     //calibration has been completed so close overlay
     document.getElementById('calibration').style.height = "0%";
     inCalibration = false;
+    webgazer.removeMouseEventListeners();
 }
 
 function closeCalibration(){
@@ -10866,16 +10869,20 @@ function closeCalibration(){
     if (confirm('Are you sure you want to stop calibration? This will stop the eye tracking software.')){
 	document.getElementById('calibration').style.height = "0%";
 	window.localStorage.clear();
-	webgazer.pause();
+	webgazer.end();
     }
     inCalibration = false;
+    webgazer.removeMouseEventListeners();
 }
 
 function startTimer(){
     if(collectingValidation==false){
         collectingValidation = true;
-        //call to collect predictions
+        document.getElementById('validationDot').classList.toggle('valDotActive');
+
+	//call to collect predictions
         setTimeout(moveValidationDot,3000);
+	
     }
 }
 
@@ -10892,8 +10899,8 @@ function moveCalibrationDot(){
     var left = parseFloat(dotStyle.getPropertyValue('left'));
     
     //get size of window
-    var width = parseFloat(winStyle.getPropertyValue('width'));
-    var height = parseFloat(winStyle.getPropertyValue('height'));
+    var width = window.innerWidth;
+    var height = window.innerHeight;
 
     //find location of dot relative to window size
     var percentWidth = Math.round(left/width*100);
@@ -10901,19 +10908,19 @@ function moveCalibrationDot(){
 
     //move dot based of current location
     if (percentWidth == 5 && percentHeight == 5){
-	calDot.style.left = width*.95;
+	calDot.style.left = .95*width;
     }
-    else if (percentWidth ==95 && percentHeight == 5){
-	calDot.style.top = height*.95;
+    else if (percentWidth == 95 && percentHeight == 5){
+	calDot.style.top = .85*height;
     }
-    else if (percentWidth ==95 && percentHeight == 95){
-        calDot.style.left = width*.05;
+    else if (percentWidth == 95 && percentHeight == 85){
+        calDot.style.left = .05*width;
     }
-    else if (percentWidth ==5 && percentHeight == 95){
-        calDot.style.top = height*.5;
-	calDot.style.left = width*.5;
+    else if (percentWidth == 5 && percentHeight == 85){
+        calDot.style.top = .5*height;
+	calDot.style.left = .5*width;
     }
-    else if (percentWidth ==50 && percentHeight == 50){
+    else if (percentWidth == 50 && percentHeight == 50){
         endCalibration();
     }
 }
@@ -10928,6 +10935,9 @@ function startWebgazer(){
 		if((clock - lastValidation) > VALIDATION_RATE && !inCalibration && !inValidation){
 		    openValidation();
 		    inValidation = true;
+		    console.log(clock);
+		    console.log(lastValidation);
+		    console.log(VALIDATION_RATE);
 		}
 		if(inValidation){
 		    if(collectingValidation){
@@ -10986,7 +10996,6 @@ var yPoints = [];
 var timePoints = [];
 var inCircle = 0;
 var outCircle = 0;
-
 
 //webpage has just opened, ask if we can track their eyes
 if (confirm("Can we use your eye tracking data?")){
