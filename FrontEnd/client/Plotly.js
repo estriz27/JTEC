@@ -1,16 +1,6 @@
-<html>
 
-	<head>
-
-	</head>
-	<div id="myDiv" style="width:1440px;height:900px;"></div>
-
-	<body>
-
-		<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
-		<script type="text/javascript">
-		var a = 1000;
-		var b = 1000;
+//		var a = 1000;
+//		var b = 1000;
 
 		function create_blank_array(a,b)
 		{
@@ -39,10 +29,10 @@
 		return array;
 	}
 
-	var x_array = [6,4,10,4,2,10,10];
-	var y_array = [5,6,6,7,3,6,6];
-	var screen_size = [10,7];
-
+function make_heatmap(x_array, y_array, screen_size){
+console.log(x_array);
+console.log(y_array);
+screen_size = [1000,1000];
 			var data = [
 		  {
 		    z: populate_array(x_array, y_array,screen_size),
@@ -52,12 +42,4 @@
 
 		Plotly.newPlot('myDiv', data);
 
-
-
-		</script>
-
-
-	</body>
-
-
-</html>
+}
