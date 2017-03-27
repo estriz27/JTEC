@@ -1,14 +1,4 @@
-<html>
-
-	<head>
-	</head>
-
-	<body>
-
-		<script src="https://npmcdn.com/parse/dist/parse.min.js"></script>
-
-		<script type="text/javascript">
-
+//	add this line to html file to import parse <script src="https://npmcdn.com/parse/dist/parse.min.js"></script>
 		Parse.initialize("a3Vzn4zfnMObdOfhNJJEdhiFaAdG62rz1Z8ictHmG");
 		Parse.serverURL = 'http://jtec-dev.us-east-1.elasticbeanstalk.com/parse'
 		var EyeData = Parse.Object.extend("EyeData")
@@ -110,15 +100,3 @@
 		}
 
 		logOut();
-
-
-
-
-
-		</script>
-
-
-	</body>
-
-
-</html>
