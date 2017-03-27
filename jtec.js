@@ -10875,6 +10875,12 @@ function closeCalibration(){
     webgazer.removeMouseEventListeners();
 }
 
+function helpCalibration(){
+
+    alert("To calibrate the system please look at the red dots and click on them as they appear. Or you can close calibration with the Close button, this will also stop webgazer from collecting data.");
+    
+}
+
 function startTimer(){
     if(collectingValidation==false){
         collectingValidation = true;
@@ -10886,17 +10892,16 @@ function startTimer(){
     }
 }
 
+
 function moveCalibrationDot(){
     
-    //calculate styles for the dot and the window
+    //calculate styles for the dot 
     var calDot = document.getElementById('calibrationDot'),
-    dotStyle = window.getComputedStyle(calDot);
-    var calWindow = document.getElementById('calibration'),
-    winStyle = window.getComputedStyle(calWindow);
+    calStyle = getComputedStyle(calDot);
 
     //get location of dot
-    var top = parseFloat(dotStyle.getPropertyValue('top'));
-    var left = parseFloat(dotStyle.getPropertyValue('left'));
+    var top = parseFloat(calStyle.getPropertyValue("top"));
+    var left = parseFloat(calStyle.getPropertyValue("left"));
     
     //get size of window
     var width = window.innerWidth;
@@ -10906,19 +10911,57 @@ function moveCalibrationDot(){
     var percentWidth = Math.round(left/width*100);
     var percentHeight = Math.round(top/height*100);
 
-    //move dot based of current location
+    console.log("Old\nWidth: ", percentWidth, " | Height: ", percentHeight);
+
+    //move dot based on current location
     if (percentWidth == 5 && percentHeight == 5){
-	calDot.style.left = .95*width;
+	calDot.style.left = "95%";
+	calDot.style.top = "5%";
     }
     else if (percentWidth == 95 && percentHeight == 5){
-	calDot.style.top = .85*height;
-    }
-    else if (percentWidth == 95 && percentHeight == 85){
-        calDot.style.left = .05*width;
+	calDot.style.top = "85%";
+	calDot.style.left = "5%";
     }
     else if (percentWidth == 5 && percentHeight == 85){
-        calDot.style.top = .5*height;
-	calDot.style.left = .5*width;
+        calDot.style.top = "85%";
+	calDot.style.left = "95%";
+    }
+    else if (percentWidth == 95 && percentHeight == 85){
+        document.getElementById("calContent").style.visibility = "hidden";
+	calDot.style.top = "25%";
+	calDot.style.left = "25%";
+    }
+    else if (percentWidth == 25 && percentHeight == 25){
+	calDot.style.top = "25%";
+        calDot.style.left = "75%";
+    }
+    else if (percentWidth == 75 && percentHeight == 25){
+	calDot.style.top = "65%";
+        calDot.style.left = "25%";
+    }
+    else if (percentWidth == 25 && percentHeight == 65){
+	calDot.style.top = "65%";
+        calDot.style.left = "75%";
+    }
+    else if (percentWidth == 75 && percentHeight == 65){
+	calDot.style.top = "5%";
+        calDot.style.left = "50%";
+    }
+    else if (percentWidth == 50 && percentHeight == 5){
+	calDot.style.top = "50%";
+        calDot.style.left = "95%";
+    }
+    else if (percentWidth == 95 && percentHeight == 50){
+	calDot.style.top = "50%";
+        calDot.style.left = "5%";
+    }
+    else if (percentWidth == 5 && percentHeight == 50){
+	calDot.style.top = "85%";
+        calDot.style.left = "50%";
+    }
+    else if (percentWidth == 50 && percentHeight == 85){
+	calDot.style.top = "50%";
+        calDot.style.left = "50%";
     }
     else if (percentWidth == 50 && percentHeight == 50){
         endCalibration();
@@ -10965,15 +11008,6 @@ function startWebgazer(){
 	//webgazer has been started so open the calibration
 	inCalibration = true;
 	openCalibration();
-	
-	function checkIfReady() {
-            if (webgazer.isReady()) {
-          	setup();
-            } else {
-          	setTimeout(checkIfReady, 100);
-            }
-      	}
-      	setTimeout(checkIfReady,100);
     };
     
     window.onbeforeunload = function() {
@@ -10983,7 +11017,7 @@ function startWebgazer(){
 }
 
 //global variables
-var VALIDATION_RATE = 10000; //For config file
+var VALIDATION_RATE = 60000; //For config file
 var SIZE_OF_CIRCLE = 100; //For config file
 var inCalibration = false;
 var lastValidation = 0;
