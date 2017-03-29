@@ -13,10 +13,11 @@
 
 		initializeUser();
 
-		for (i = 0; i < 100; i++){
+		for (i = 0; i < 5; i++){  //generate 100 entries
 		var my_x_array = []
 		var my_y_array = []
 
+//for loop to generate random values into x_array and y_array
 		for (x = 0; x < 100; x++){
 			my_x_array.push(randomValue());
 			my_y_array.push(randomValue())
@@ -28,8 +29,9 @@
 		var screen_size = [10,10];
 		var valid = true;
 		var valid_percent = 75;
+	  var url = "http://www.EliasisChill.com/";
 
-		pushData(my_x_array,my_y_array,my_timestamp_array, screen_size, valid, valid_percent);
+		pushData(my_x_array,my_y_array,my_timestamp_array, screen_size, valid, valid_percent,url);
 		}
 
 		logOut();
