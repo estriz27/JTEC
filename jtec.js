@@ -10769,7 +10769,6 @@ if (typeof exports !== 'undefined') {
 function openCalibration(){
     //opens the calibration overlay
     document.getElementById('calibration').style.height = "100%";
-    webgazer.addMouseEventListeners();
 }
 
 function openValidation(){
@@ -10779,15 +10778,8 @@ function openValidation(){
 
 function closeValidation(){
     //validation has been exited so close overlay                                     
-    //cancel calibration                                                                  
-    if (confirm('Are you sure you want to stop validation? This will stop the eye tracking software.')){
-        document.getElementById('validation').style.height = "0%";
-        window.localStorage.clear();
-        webgazer.pause();
-
-        inValidation = false;
-        webgazer.removeMouseEventListeners();
-    }
+    document.getElementById('validation').style.height = "0%";
+    inValidation = false;
 }
 
 function endValidation(){
@@ -10877,11 +10869,10 @@ function closeCalibration(){
     if (confirm('Are you sure you want to stop calibration? This will stop the eye tracking software.')){
 	document.getElementById('calibration').style.height = "0%";
 	window.localStorage.clear();
-	webgazer.pause();
-
-	inCalibration = false;
-	webgazer.removeMouseEventListeners();
+	webgazer.end();
     }
+    inCalibration = false;
+    webgazer.removeMouseEventListeners();
 }
 
 function helpCalibration(){
@@ -10979,7 +10970,7 @@ function moveCalibrationDot(){
 
 function startWebgazer(){
     window.onload = function() {
-
+	
   	webgazer.setRegression('ridge') /* currently must set regression and tracker */
   	    .setTracker('clmtrackr')
   	    .setGazeListener(function(data, clock) {
@@ -11026,6 +11017,8 @@ function startWebgazer(){
 }
 
 //global variables
+var VALIDATION_RATE = 60000; //For config file
+var SIZE_OF_CIRCLE = 100; //For config file
 var inCalibration = false;
 var lastValidation = 0;
 var inValidation = false;
