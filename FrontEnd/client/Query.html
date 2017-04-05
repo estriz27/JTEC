@@ -14,7 +14,9 @@
 		Parse.initialize("a3Vzn4zfnMObdOfhNJJEdhiFaAdG62rz1Z8ictHmG");
 		Parse.serverURL = 'http://jtec-dev.us-east-1.elasticbeanstalk.com/parse'
 
-
+		/**
+		*generate_query() queries the database based on the objectID and calls generate_heatmap on the data retrieved in the query.
+		*/
 		function generate_query(objectID, completion, valid_threshold){
 
 
@@ -53,19 +55,21 @@
 
 
 		}
-
+/**
+*generate_heatmap() takes the values from the query and generates a two-dimensional array used as input for the make_heatmap call
+*/
 		function generate_heatmap(data_array)
 		{
-			x_values = [];
-			y_values = [];
+			x_values = [];  //array for concatenation of all x arrays in queried object
+			y_values = [];  //array for concatenation of all y arrays in queried object
 			screen_size = [];
 
 			for (var i = 0; i < data_array.length; i++){
 				var object = data_array[i];
-				for (var j = 0; j < object.get('x_array').length; j++){
+				for (var j = 0; j < object.get('x_array').length; j++){  //appends all x values from the object queried to x_values
 					x_values.push(object.get('x_array')[j])
 				}
-				for (var k = 0; k < object.get('y_array').length; k++){
+				for (var k = 0; k < object.get('y_array').length; k++){ //appends retrieves all y values from the object queried to y_values
 					y_values.push(object.get('y_array')[k])
 				}
 				screen_size = object.get('screen_size');
@@ -76,9 +80,7 @@
 
 		}
 
-		generate_query("6VloZx5eKV", generate_heatmap,75);
-
-
+		generate_query("0BDd1hguOr", generate_heatmap,75);
 
 
 
