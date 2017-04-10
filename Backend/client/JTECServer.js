@@ -1,14 +1,4 @@
-<html>
-
-	<head>
-	</head>
-
-	<body>
-
-		<script src="https://npmcdn.com/parse/dist/parse.min.js"></script>
-
-		<script type="text/javascript">
-
+//	add this line to html file to import parse <script src="https://npmcdn.com/parse/dist/parse.min.js"></script>
 		Parse.initialize("a3Vzn4zfnMObdOfhNJJEdhiFaAdG62rz1Z8ictHmG");
 		Parse.serverURL = 'http://jtec-dev.us-east-1.elasticbeanstalk.com/parse'
 		var EyeData = Parse.Object.extend("EyeData")
@@ -47,7 +37,7 @@
 		    return text;
 		}
 
-		function pushData(x_array,y_array,timestamp_array, screen_size, valid, valid_percent){
+		function pushData(x_array,y_array,timestamp_array, screen_size, valid, valid_percent,url){
 			var newSet = new EyeData();
 			var x_array = x_array || [];
 			var y_array = y_array || [];
@@ -55,6 +45,7 @@
 			var screen_size = screen_size || [];
 			var valid = valid || null;
 			var valid_percent = valid_percent || null;
+			var url = url || ""
 
 			newSet.set("user",Parse.User.current());
 			newSet.set("x_array",x_array);
@@ -63,6 +54,7 @@
 			newSet.set("screen_size", screen_size);
 			newSet.set("valid", valid);
 			newSet.set("valid_percent", valid_percent);
+			newSet.set("url", url);
 
 
 			newSet.save(null, {
@@ -85,41 +77,3 @@
 		function randomValue(){
 			return Math.floor((Math.random() * 1000) + 1);
 		}
-
-		//Test Code
-
-		initializeUser();
-
-		for (i = 0; i < 100; i++){
-		var my_x_array = []
-		var my_y_array = []
-
-		for (x = 0; x < 100; x++){
-			my_x_array.push(randomValue());
-			my_y_array.push(randomValue())
-		}
-
-
-		var date = new Date();
-		var my_timestamp_array = [date,date,date,date,date];
-		var screen_size = [1000,1000];
-		var valid = true;
-		var valid_percent = 75;
-
-
-		pushData(my_x_array,my_y_array,my_timestamp_array, screen_size, valid, valid_percent);
-		}
-
-		logOut();
-
-
-
-
-
-		</script>
-
-
-	</body>
-
-
-</html>
