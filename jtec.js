@@ -10911,8 +10911,6 @@ function moveCalibrationDot(){
     var percentWidth = Math.round(left/width*100);
     var percentHeight = Math.round(top/height*100);
 
-    console.log("Old\nWidth: ", percentWidth, " | Height: ", percentHeight);
-
     //move dot based on current location
     if (percentWidth == 5 && percentHeight == 5){
 	calDot.style.left = "95%";
