@@ -10768,6 +10768,7 @@ if (typeof exports !== 'undefined') {
 
 function openCalibration(){
     //opens the calibration overlay
+    initializeUser();
     document.getElementById('calibration').style.height = "100%";
 }
 
@@ -10788,6 +10789,16 @@ function endValidation(){
     inValidation = false;
     
     //TO-DO: Use inCirlce & outCircle to calculate validity 
+    
+    var valid = inCircle / (inCircle+outCircle) > ACCURACY
+
+    pushData(xPoints,yPoints,timePoints, [document.width(),document.height()] , valid, inCircle / (inCircle+outCircle)); //,window.location.href url
+
+    xPoints = [];
+    yPoints = [];
+    timePoints = [];
+    inCircle = 0;
+    outCircle = 0;
 }
 
 function moveValidationDot(){
@@ -11012,6 +11023,7 @@ function startWebgazer(){
     
     window.onbeforeunload = function() {
 	window.localStorage.clear(); 
+        logOut(); //ed user on server
 	//Comment out if you want to save data across different sessions 
     }
 }
@@ -11019,6 +11031,7 @@ function startWebgazer(){
 //global variables
 var VALIDATION_RATE = 60000; //For config file
 var SIZE_OF_CIRCLE = 100; //For config file
+var ACCURACY = .50;
 var inCalibration = false;
 var lastValidation = 0;
 var inValidation = false;
@@ -11035,6 +11048,4 @@ var outCircle = 0;
 if (confirm("Can we use your eye tracking data?")){
     startWebgazer()
 }
-
-
 
