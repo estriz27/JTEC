@@ -10792,7 +10792,7 @@ function endValidation(){
     
     var valid = inCircle / (inCircle+outCircle) > ACCURACY
 
-    pushData(xPoints,yPoints,timePoints, [document.innerWidth, document.innerHeight] , valid, inCircle / (inCircle+outCircle)); //,window.location.href url
+    pushData(xPoints,yPoints,timePoints, [document.innerWidth, document.innerHeight] , valid, inCircle / (inCircle+outCircle),window.location.href); //,window.location.href url
 
     xPoints = [];
     yPoints = [];
