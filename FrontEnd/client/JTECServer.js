@@ -60,6 +60,7 @@
 
 			newSet.save(null, {
 				success: function(newSet) {
+		        console.log(" user send");
 				    // Execute any logic that should take place after the object is saved.
 			//	  alert('New object created with objectId: ' + newSet.id);
 				},

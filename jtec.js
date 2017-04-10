@@ -10790,9 +10790,15 @@ function endValidation(){
     
     //TO-DO: Use inCirlce & outCircle to calculate validity 
     
-    var valid = inCircle / (inCircle+outCircle) > ACCURACY
-
-    pushData(xPoints,yPoints,timePoints, [document.innerWidth, document.innerHeight] , valid, inCircle / (inCircle+outCircle),window.location.href); //,window.location.href url
+    var valid = (inCircle / (inCircle+outCircle)) > ACCURACY;
+    var my_x_array = xPoints;
+		var my_y_array = yPoints;
+		var my_timestamp_array = timePoints;
+		var screen_size = [document.innerWidth, document.innerHeight];
+		var valid_percent = inCircle / (inCircle+outCircle) ;
+	  var url = "test";
+pushData(my_x_array,my_y_array,my_timestamp_array, screen_size, valid, valid_percent,url);
+    //pushData(xPoints,yPoints,timePoints, [document.innerWidth, document.innerHeight] , valid, inCircle / (inCircle+outCircle),window.location.href); //,window.location.href url
 
     xPoints = [];
     yPoints = [];
@@ -11027,7 +11033,7 @@ function startWebgazer(){
 }
 
 //global variables
-var VALIDATION_RATE = 60000; //For config file
+var VALIDATION_RATE = 100000; //For config file
 var SIZE_OF_CIRCLE = 100; //For config file
 var ACCURACY = .50;
 var inCalibration = false;
