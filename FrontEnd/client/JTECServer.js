@@ -1,7 +1,7 @@
 //	add this line to html file to import parse <script src="https://npmcdn.com/parse/dist/parse.min.js"></script>
 		Parse.initialize("a3Vzn4zfnMObdOfhNJJEdhiFaAdG62rz1Z8ictHmG");
 		//Parse.serverURL = 'https://jtec-dev.us-east-1.elasticbeanstalk.com/parse'
-		Parse.serverURL = 'https://jtecdesign.com/parse'
+		Parse.serverURL = 'https://server.jtecdesign.com/parse'
 		var EyeData = Parse.Object.extend("EyeData")
 
 
