@@ -46,7 +46,7 @@
 			var screen_size = screen_size || [];
 			var valid = valid || null;
 			var valid_percent = valid_percent || null;
-			var url = url || "TEST URL"
+			var url = url || ""
 
 			newSet.set("user",Parse.User.current());
 			newSet.set("x_array",x_array);
