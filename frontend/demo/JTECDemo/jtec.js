@@ -10779,8 +10779,12 @@ function openValidation(){
 
 function closeValidation(){
     //validation has been exited so close overlay                                     
-    document.getElementById('validation').style.height = "0%";
-    inValidation = false;
+    if (confirm('Are you sure you want to stop validation? This will stop the eye tracking software.')){
+	document.getElementById('validation').style.height = "0%";
+	inValidation = false;
+	webgazer.end();
+    }
+    
 }
 
 function endValidation(){
@@ -10892,8 +10896,6 @@ function closeCalibration(){
 	window.localStorage.clear();
 	webgazer.end();
     }
-    inCalibration = false;
-    webgazer.removeMouseEventListeners();
 }
 
 function helpCalibration(){
@@ -10988,6 +10990,7 @@ function moveCalibrationDot(){
 }
 
 function startWebgazer(){
+    //Initializes webgazer and checks for 
     window.onload = function() {
 	
   	webgazer.setRegression('ridge') /* currently must set regression and tracker */
@@ -11022,7 +11025,7 @@ function startWebgazer(){
 		}
     	    })
     	    .begin()
-    	    .showPredictionPoints(true); /* shows a square every 100 milliseconds where current prediction is */      
+    	    .showPredictionPoints(false); /* shows a square every 100 milliseconds where current prediction is */      
 	
 	//webgazer has been started so open the calibration
 	inCalibration = true;
@@ -11037,9 +11040,9 @@ function startWebgazer(){
 }
 
 //global variables
-var VALIDATION_RATE = 60000; //For config file
-var SIZE_OF_CIRCLE = 200; //For config file
-var ACCURACY = .50;
+var VALIDATION_RATE = 60000; //For config
+var SIZE_OF_CIRCLE = 200; //For config
+var ACCURACY = .50; //For config
 var inCalibration = false;
 var lastValidation = 0;
 var inValidation = false;
@@ -11053,7 +11056,7 @@ var inCircle = 0;
 var outCircle = 0;
 
 //webpage has just opened, ask if we can track their eyes
-if (confirm("Can we use your eye tracking data?")){
+if (confirm("Can we use your webcam to collect eye tracking data for our site? No video feed will be saved and you can opt out during any calibration or validation period.")){
     startWebgazer()
 }
 

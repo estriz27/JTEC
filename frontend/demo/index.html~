@@ -4,6 +4,7 @@
   </head>
 
   <body>
+
     <div id="calibration" class="overlay">
 
       <a href="#" class="closeBtn" onclick="closeCalibration()">Close</a>
@@ -25,10 +26,8 @@
     </div>
     
     <script src="https://npmcdn.com/parse/dist/parse.min.js"></script>
-    
-    <!--For Installation: change the src to be the paths to JTECServer.js, jtec.js, and your website homepage respectively -->
     <script type="text/javascript" src="./JTECDemo/JTECServer.js"></script>
-    <script type="text/javascript" src= "./JTECDemo/jtec.js"></script>
-    <iframe src="main.html" style="position:fixed; top:0px; bottom:0px; right:0px; width:100%; border: none; margin:0; padding:0; overflow: hidden; z-index:0; height: 100%;">
+
+    <script type="text/javascript" src = "./JTECDemo/jtec.js"></script>
 
   </body>
