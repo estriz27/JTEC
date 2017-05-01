@@ -60,6 +60,7 @@ If you choose mLab, do the following:
 6.	If you look at the top of the screen, you will see your data base URI.  It will look like “mongodb://<dbuser>:<dbpassword>@ds127731.mlab.com:27731/<dbname>”
 
     a.	You will need this later
+    
     b.	The dbuser and dbpassword refer to your newly created user
 
 If you choose to use a MongoDB host other than mLab, there are many great tutorials available with a quick search on Google.
