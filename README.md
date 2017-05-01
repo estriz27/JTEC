@@ -25,11 +25,15 @@ in the body of the html file ‘index.html’(i.e. The last three lines before t
 For this portion of the eye tracking system there are some important variables you may want to know about and/or change to fit your needs. All of these variables can be found in the file ‘jtec.js’ at the end of the file:
 
 1.VALIDATION_RATE
+
     This variable dictates how long in milliseconds the software will wait to start the next validation i.e. 60000 is equivalent to 1 minute between each validation
     
 2.SIZE_OF_CIRCLE
+
     This variable is the radius of the circle in pixels used during validation to determine the accuracy of the data being collected. The larger the value given to this variable the more leeway you give the system in calculating the accuracy percentage.
+    
 3.ACCURACY
+
     This variable is what percent accuracy you will tolerate for data to be called valid. If the system calculates the percent accuracy(with your set SIZE_OF_CIRCLE) to be greater than ACCURACY than the data collected since the last validation period will be declared valid.
         
 # Backend Installation
