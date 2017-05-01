@@ -58,6 +58,7 @@ If you choose mLab, do the following:
 4.	After creating the new database, click on it
 5.	Add a database user under the users column by clicking on the Add database user button
 6.	If you look at the top of the screen, you will see your data base URI.  It will look like “mongodb://<dbuser>:<dbpassword>@ds127731.mlab.com:27731/<dbname>”
+
     a.	You will need this later
     b.	The dbuser and dbpassword refer to your newly created user
 
