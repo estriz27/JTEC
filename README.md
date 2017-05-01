@@ -41,9 +41,10 @@ For this portion of the eye tracking system there are some important variables y
 Please read through the following documentation to get a better understanding about the Parse Server Platform before proceeding.
 
 1.  [Parse Server](https://github.com/parse-community/parse-server)
-2.  [Parse Server](Example]https://github.com/parse-community/parse-server-example)
-3.  [Parse Server Guide](http://docs.parseplatform.org/parse-server/guide/)
+2.  [Parse Server Guide](http://docs.parseplatform.org/parse-server/guide/)
+3.  [Parse Server Example Guide](Example]https://github.com/parse-community/parse-server-example)
 4.  [Parse Javascript Guide](http://docs.parseplatform.org/js/guide/)
+5.  [Other Helpful Links](https://github.com/parse-community/parse-server/wiki)
 
 #### Setting up Your Database
 
