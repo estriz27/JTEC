@@ -1,10 +1,10 @@
-//	add this line to html file to import parse <script src="https://npmcdn.com/parse/dist/parse.min.js"></script>
+ //	add this line to html file to import parse <script src="https://npmcdn.com/parse/dist/parse.min.js"></script>
 		Parse.initialize("a3Vzn4zfnMObdOfhNJJEdhiFaAdG62rz1Z8ictHmG");
 		//Parse.serverURL = 'https://jtec-dev.us-east-1.elasticbeanstalk.com/parse'
 		Parse.serverURL = 'https://server.jtecdesign.com/parse'
 		var EyeData = Parse.Object.extend("EyeData")
 
-
+		/*This function initializes a new userfor pushing data on the server*/
 		function initializeUser(){
 			if (Parse.User.current() != null){
 				Parse.User.logOut();
@@ -27,7 +27,7 @@
 
 		}
 
-
+		/*This function generates a random id that is used for the user*/
 		function makeid(){
 		    var text = "";
 		    var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
@@ -38,6 +38,7 @@
 		    return text;
 		}
 
+		/*This function pushes an x array, y arra, timestamp, screen size, valid, valid percent, and url to the server*/
 		function pushData(x_array,y_array,timestamp_array, screen_size, valid, valid_percent,url){
 			var newSet = new EyeData();
 			var x_array = x_array || [];
@@ -72,10 +73,11 @@
 				});
 		}
 
+		/*This function logs out a user*/
 		function logOut(){
 			Parse.User.logOut();
 		}
-
+		/*This function generates random values*/
 		function randomValue(){
 			return Math.floor((Math.random() * 1000) + 1);
 		}

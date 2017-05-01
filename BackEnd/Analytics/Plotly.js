@@ -72,7 +72,7 @@ function make_heatmap(x_array, y_array, screen_size){
 
 			var data = [
 		  {
-		    z: populate_array_binned(x_array, y_array,screen_size,100),  //bin_size set to 100
+		    z: populate_array_binned(x_array, y_array,screen_size,1),  //bin_size set to 100
 		    type: 'heatmap',
 				//opacity: 0.5  //uncomment to add opacity
 		  }
