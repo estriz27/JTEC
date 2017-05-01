@@ -38,4 +38,53 @@ For this portion of the eye tracking system there are some important variables y
         
 # Backend Installation
 
+#### Setting up Your Database
+
+Setting up the database is a relatively simple process.  Our server requires that you have a MongoDB database, so you have a few options listed below.  Follow each hosting service’s setup tutorials and you will have a working database.  We elected to use MLab in our setup because it was easy to setup and widely used.  Generally, any system running MongoDB is acceptable, so you can also host it locally.  Please refer to any corresponding documentation on that company’s website.
+
+1.	mLab 
+2.	Objectrocket 
+3.	MongoDB Atlas
+4.	MongoHQ
+
+You may find it helpful to read the Official Parse Server Setup Guide:  https://github.com/parse-community/parse-server 
+
+If you choose mLab, do the following:
+
+1.	Go to the mLab website and create an account
+2.	After activating your account, click the Create New button
+3.	You may choose any setup based on your requirements
+    a.	We chose the single node sandbox hosted on AWS
+4.	After creating the new database, click on it
+5.	Add a database user under the users column by clicking on the Add database user button
+6.	If you look at the top of the screen, you will see your data base URI.  It will look like “mongodb://<dbuser>:<dbpassword>@ds127731.mlab.com:27731/<dbname>”
+    a.	You will need this later
+    b.	The dbuser and dbpassword refer to your newly created user
+
+If you choose to use a MongoDB host other than mLab, there are many great tutorials available with a quick search on Google.
+
+#### Setting up Your Server
+
+First you will need to setup you JTEC server locally.  This is a very simple and straightforward process.  The step will be to locate the GitLab Repository: JTEC. 
+
+You can either clone or download this repository.  Once the repository is on your computer, your will need to do the following.
+
+1.	Install Homebrew
+`$ /usr/bin/ruby -e "$(curl –fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)`
+
+2.	Install Node (v4.3 or newer)
+`$ brew install node`
+
+Now you have everything you need to run the JTEC Parse Server locally with your remotely hosted database.
+
+Configuring Your Local Server
+
+1.	In the JTEC repository you cloned, navigate to the Backend folder and open the JTEC Parse Server directory
+2.	Open the index.js file in a text editor
+3.	Edit the line with the database URI and replace the text with the URI for your database
+4.	You may also choose to change the App ID and Masterkey
+
+Open your terminal and navigate into the JTEC Parse Server folder.  If you are running the server for the first time, type `npm install`.  This will install any dependencies you needyou’re your server.  Now run your server locally by typing `npm start` into the terminal.  If all goes well, you will have the server running locally.
+
+Refer to the Official Parse Server Documentation for hosting your server remotely.
 
