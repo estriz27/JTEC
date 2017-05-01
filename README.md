@@ -38,6 +38,13 @@ For this portion of the eye tracking system there are some important variables y
         
 # Backend Installation
 
+Please read through the following documentation to get a better understanding about the Parse Server Platform before proceeding.
+
+1.  [Parse Server]https://github.com/parse-community/parse-server
+2.  [Parse Server Example]https://github.com/parse-community/parse-server-example
+3.  [Parse Server Guide]http://docs.parseplatform.org/parse-server/guide/
+4.  [Parse Javascript Guide]http://docs.parseplatform.org/js/guide/
+
 #### Setting up Your Database
 
 Setting up the database is a relatively simple process.  Our server requires that you have a MongoDB database, so you have a few options listed below.  Follow each hosting service’s setup tutorials and you will have a working database.  We elected to use MLab in our setup because it was easy to setup and widely used.  Generally, any system running MongoDB is acceptable, so you can also host it locally.  Please refer to any corresponding documentation on that company’s website.
